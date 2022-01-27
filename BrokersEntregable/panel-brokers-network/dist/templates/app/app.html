@@ -1,0 +1,72 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar">
+            <li class="sidebar-main">
+                <a ng-click="toggleSidebar()">
+                    Brokers Network
+                    <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                </a>
+            </li>
+            <li class="sidebar-title"><span>NAVEGACIÓN</span></li>
+
+            <!-- Agregar un <li> por cada menu que se desee, eligiendo las rutas e iconos correspondientes, con permisos -->
+            <!--<li class="sidebar-list">
+                <a ui-sref="app.dashboard">Dashboard <span class="menu-icon fa fa-bar-chart"></span></a>
+            </li>-->
+            <li class="sidebar-list">
+                <a ui-sref="app.pagos">Pagos <span class="menu-icon fa fa-list"></span></a>
+            </li>
+            <li class="sidebar-list">
+                <a ui-sref="app.historico">Histórico <span class="menu-icon fa fa-clock-o"></span></a>
+            </li>
+            <li class="sidebar-list">
+                <a ui-sref="app.usuarios">Usuarios <span class="menu-icon fa fa-users"></span></a>
+            </li>
+<!--            <li class="sidebar-list">
+                <a ui-sref="app.pos">Pos <span class="menu-icon fa fa-dollar"></span></a>
+            </li>-->
+        </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+        <div class="page-content">
+            <!-- Header Bar -->
+            <div class="row header">
+                <div class="col-xs-12">
+                    <!-- Logo de la aplicacion -->
+                    <div class="pull-left">
+                        <img src="img/logo.png" style="height: 60px; width: 130px;">
+                    </div>
+                    <div class="user pull-right">
+                        <div class="item dropdown" uib-dropdown>
+                            <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                <img src="img/avatar.jpg">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                {{user.usuario}}
+                                <li class="link">
+                                    <button class="btn btn-block" ng-click="editarPerfil()">
+                                        Editar Perfil
+                                    </button>
+                                </li>
+                                <li class="link">
+                                    <a href="#" ng-click="salir()">
+                                        Salir
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Header Bar -->
+
+            <!-- Main Content -->
+            <div ui-view></div>
+
+        </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+</div><!-- End Page Wrapper -->
