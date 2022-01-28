@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="70efb0d8-60e2-4cb6-b266-9a12ee7a3763" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/js/controllers/historicoCtrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/js/controllers/pagosCtrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/js/services/pagos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/app/historico/crear.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/app/historico/historico.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/app/historico/ver.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/app/pagos/crear.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/app/pagos/pagos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/app/pagos/ver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/authCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/authCtrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/dashboardCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/dashboardCtrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/master-ctrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/master-ctrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/posCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/posCtrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/usuariosCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/usuariosCtrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/services/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/services/usuarios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/app/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/app/usuarios/crear.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/app/usuarios/crear.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/app/usuarios/usuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/app/usuarios/usuarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/app/usuarios/ver.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/app/usuarios/ver.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ghSUcOqmEdwfGyz2O1kEftjJuB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\BitBucket\Sites\panel-brokers-network\src\js\controllers" />
+      <recent name="C:\BitBucket\Sites\panel-brokers-network\src\templates\app" />
+      <recent name="C:\BitBucket\Sites\panel-brokers-network\src\js\services" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70efb0d8-60e2-4cb6-b266-9a12ee7a3763" name="Default Changelist" comment="" />
+      <created>1598565347793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598565347793</updated>
+      <workItem from="1598565349316" duration="3340000" />
+      <workItem from="1599069330825" duration="6639000" />
+      <workItem from="1599142214404" duration="620000" />
+      <workItem from="1599160138863" duration="733000" />
+      <workItem from="1603751088372" duration="2775000" />
+      <workItem from="1603810896792" duration="40000" />
+      <workItem from="1620925913760" duration="1171000" />
+      <workItem from="1628798935978" duration="1013000" />
+      <workItem from="1628865392471" duration="1000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

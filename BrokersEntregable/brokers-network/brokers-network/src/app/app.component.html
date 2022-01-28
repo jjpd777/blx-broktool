@@ -1,0 +1,56 @@
+<!-- <ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu color="primary" contentId="main-content" type="overlay">
+      <ion-header no-border>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app> -->
+
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu color="primary" contentId="main-content" type="overlay">
+      <ion-content style="--background: #094f72;">
+      <!-- <div style="background-color: #094f72;"> -->
+        <div style=" background-color: white; height: 35vh;   display: flex;
+        align-items: center;
+        justify-content: center;">
+          <img style="width: 50%; " src="/assets/images/logo-BROKTOOL.png" alt="">
+        </div>
+        <div >
+          <ion-menu-toggle auto-hide="false">
+            <div class="separador"></div>
+            <p class="menu__item" routerLink="/perfil-main">mi perfil</p>
+           <!-- <p class="menu__item" routerLink="/">configuración</p>-->
+<!--            <p class="menu__item" routerLink="/">Pagos</p>-->
+            <div class="separador"></div>
+            <p class="menu__item--others" style="background-color: #67adc9;" routerLink="/portfolio">Portafolio</p>
+           <!-- <p class="menu__item&#45;&#45;others" style="background-color: #84ceda;" routerLink="/network">Network</p>-->
+            <p class="menu__item--others" style="background-color: #ff7949;" routerLink="/propiedades">Propiedades</p>
+            <p class="menu__item--others" style="background-color: #56c1be;" routerLink="/clientes">Clientes</p>
+            <div class="separador"></div>
+            <p class="menu__item" routerLink="/inicio" (click)="cerrarSesion()">Cerrar Sesión</p>
+          </ion-menu-toggle>
+        </div>
+      <!-- </div> -->
+    </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

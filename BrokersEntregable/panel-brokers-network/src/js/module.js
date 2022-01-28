@@ -1,0 +1,1 @@
+angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngStorage', 'cp.ngConfirm', 'tableSort', 'ui.select', 'chart.js','cp.ngConfirm']);

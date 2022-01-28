@@ -1,0 +1,230 @@
+<div class="row" style="    position: absolute;
+    z-index: 9999;
+    left: 6vw;
+    top: 2vw;
+    color: white;">
+  <ion-icon size="large" name="arrow-back" routerLink="/perfil-main"></ion-icon>
+</div>
+<app-menu-registro></app-menu-registro>
+
+<ion-content>
+<!--  <div class="row" style=" margin-bottom: 25px; height: 10vh;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <button
+        type="button"
+        class="form-control button__uploadImg"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      >
+        Subir foto de portada
+      </button>
+    </div>
+  </div>-->
+
+  <div class="container" style="margin-top: 25px">
+    
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Nombre y Apellido" [(ngModel)]="user.nombreApellido" />
+        </div>
+      </div>
+      <!--      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+              <div class="form-group">
+                <input type="text" class="form-control input__text" placeholder="Usuario" [(ngModel)]="newUser.usuario"/>
+              </div>
+            </div>-->
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="email" class="form-control input__text" placeholder="Email" [(ngModel)]="user.email"/>
+        </div>
+      </div>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="password" class="form-control input__text" placeholder="Password" [(ngModel)]="user.password" />
+        </div>
+      </div>
+
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  readonly
+                  placeholder="Desde cuando"
+                  class="form-control input__text"
+                  #dp="bsDatepicker"
+                  [(ngModel)]="user.desdeCuando"
+                  bsDatepicker
+                  [bsConfig]="{ containerClass: 'theme-blue' }"
+          />
+        </div>
+      </div>
+      <!--<div class="checkbox">
+        <label class="checkbox__label">
+          <input type="checkbox" [(ngModel)]="asesorChecked" (click)="asesorIndependienteClick()">
+          <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+          Soy asesor independiente
+        </label>
+      </div>-->
+      <ion-item (click)="asesorIndependienteClick()">
+        <ion-label style="white-space: normal;">Soy asesor independiente</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="asesorChecked" ></ion-checkbox>
+      </ion-item>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="number" class="form-control input__text" placeholder="Celular" [(ngModel)]="user.celular" />
+        </div>
+      </div>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Sitio Web" [(ngModel)]="user.sitioweb" />
+        </div>
+      </div>
+
+
+
+      <!--     <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+             <div class="form-group" style="text-align: right">
+               <input type="button" class="form-control button__siguiente" value="Subir CURP " (click)="buscarCurp()"/>
+               <i *ngIf="newUser.curp!=''" class="cr-icon fa fa-check" style="color: #094F72;"></i>
+             </div>
+           </div>-->
+
+      <!--
+            <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+              <div class="form-group">
+                <input type="text" class="form-control input__text" placeholder="RFC" [(ngModel)]="newUser.rfc" />
+              </div>
+            </div>
+      -->
+
+            <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+              <div class="form-group">
+                <input type="text" class="form-control input__text" placeholder="Ciudad" [(ngModel)]="user.ciudad"/>
+              </div>
+            </div>
+
+            <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+              <div class="form-group">
+                <input type="text" class="form-control input__text" placeholder="Zonas para cubrir"  [(ngModel)]="user.zonaParaCubrir"/>
+              </div>
+            </div>
+
+            <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+              <div class="form-group">
+                <input type="text" class="form-control input__text" placeholder="Horario para cubrir citas" [(ngModel)]="user.horarioParaCubrir"/>
+              </div>
+            </div>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  type="text"
+                  class="form-control input__text"
+                  placeholder="Empresa" [(ngModel)]="user.empresa"
+          />
+        </div>
+      </div>
+
+<!--
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+
+        <div class="checkbox">
+          <label class="checkbox__label">
+            <input type="checkbox" value="" (click)="terminosClick()">
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            He leído términos y condiciones
+          </label>
+        </div>
+
+        &lt;!&ndash;        <div class="checkbox">
+                  <label class="checkbox__label">
+                    <input type="checkbox" value="" (click)="poliitcasClick()">
+                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                    Acepto política de privacidad
+                  </label>
+                </div>
+
+                <div class="checkbox">
+                  <label class="checkbox__label">
+                    <input type="checkbox" value="" (click)="notificacionesClick()">
+                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                    Deseo recibir notificaciones
+                  </label>
+                </div>&ndash;&gt;
+      </div>-->
+
+     <!-- <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  [(ngModel)]="user.datosTarjeta1"
+            type="text"
+            class="form-control input__text"
+            placeholder="Datos de tarjeta"
+          />
+        </div>
+      </div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  [(ngModel)]="user.datosTarjeta2"
+            type="text"
+            class="form-control input__text"
+            placeholder="Datos de tarjeta"
+          />
+        </div>
+      </div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+            type="text"
+            [(ngModel)]="user.datosTarjeta3"
+            class="form-control input__text"
+            placeholder="Datos de tarjeta"
+          />
+        </div>
+      </div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  [(ngModel)]="user.datosTarjeta4"
+            type="text"
+            class="form-control input__text"
+            placeholder="Datos de tarjeta"
+          />
+        </div>
+      </div>
+-->
+<!--
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+
+        <div class="checkbox">
+          <label class="checkbox__label">
+            <input type="checkbox" value="" (click)="accesoUbicacionClick()">
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            Permitir que Broktool acceda a tu ubicación mientras la app está en uso
+          </label>
+        </div>
+
+      </div>
+-->
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+            type="button"
+            class="form-control button__siguiente"
+            value="Guardar"
+            routerLink="/perfil-main"
+            (click)="actualizarRegistro()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<app-footer-blue></app-footer-blue>

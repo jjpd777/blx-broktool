@@ -1,0 +1,26 @@
+[19-Nov-2019 11:32:19 America/Los_Angeles] PHP Warning:  mysqli_connect(): (HY000/9002): SSL connection is required. Please specify SSL options and retry. in D:\home\site\wwwroot\PHP\connection.php on line 19
+[19-Nov-2019 11:32:19 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in D:\home\site\wwwroot\PHP\connection.php on line 20
+[19-Nov-2019 11:32:19 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 21
+[19-Nov-2019 11:32:19 America/Los_Angeles] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 41
+[19-Nov-2019 11:32:25 America/Los_Angeles] PHP Warning:  mysqli_connect(): (HY000/9002): SSL connection is required. Please specify SSL options and retry. in D:\home\site\wwwroot\PHP\connection.php on line 19
+[19-Nov-2019 11:32:25 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in D:\home\site\wwwroot\PHP\connection.php on line 20
+[19-Nov-2019 11:32:25 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 21
+[19-Nov-2019 11:32:25 America/Los_Angeles] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 41
+[19-Nov-2019 11:32:55 America/Los_Angeles] PHP Warning:  mysqli_connect(): (HY000/9002): SSL connection is required. Please specify SSL options and retry. in D:\home\site\wwwroot\PHP\connection.php on line 19
+[19-Nov-2019 11:32:55 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in D:\home\site\wwwroot\PHP\connection.php on line 20
+[19-Nov-2019 11:32:55 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 21
+[19-Nov-2019 11:32:55 America/Los_Angeles] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 41
+[19-Nov-2019 11:33:31 America/Los_Angeles] PHP Warning:  mysqli_connect(): (HY000/9002): SSL connection is required. Please specify SSL options and retry. in D:\home\site\wwwroot\PHP\connection.php on line 19
+[19-Nov-2019 11:33:31 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in D:\home\site\wwwroot\PHP\connection.php on line 20
+[19-Nov-2019 11:33:31 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 21
+[19-Nov-2019 11:33:31 America/Los_Angeles] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 41
+[19-Nov-2019 11:35:43 America/Los_Angeles] PHP Warning:  mysqli_connect(): (HY000/9002): SSL connection is required. Please specify SSL options and retry. in D:\home\site\wwwroot\PHP\connection.php on line 19
+[19-Nov-2019 11:35:43 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in D:\home\site\wwwroot\PHP\connection.php on line 20
+[19-Nov-2019 11:35:43 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 21
+[19-Nov-2019 11:35:43 America/Los_Angeles] PHP Notice:  Trying to get property of non-object in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 40
+[19-Nov-2019 11:35:43 America/Los_Angeles] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 44
+[19-Nov-2019 11:35:53 America/Los_Angeles] PHP Warning:  mysqli_connect(): (HY000/9002): SSL connection is required. Please specify SSL options and retry. in D:\home\site\wwwroot\PHP\connection.php on line 19
+[19-Nov-2019 11:35:53 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in D:\home\site\wwwroot\PHP\connection.php on line 20
+[19-Nov-2019 11:35:53 America/Los_Angeles] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 21
+[19-Nov-2019 11:35:53 America/Los_Angeles] PHP Notice:  Trying to get property of non-object in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 40
+[19-Nov-2019 11:35:53 America/Los_Angeles] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, string given in D:\home\site\wwwroot\PHP\admin\Auth\doLogin.php on line 44

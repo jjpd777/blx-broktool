@@ -1,0 +1,272 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="container">
+    <div class="row" class="container--subHeader">
+      <p class="sub-Header">
+        <ion-icon size="large" name="arrow-back" style="float: left;" routerLink="/clientes"></ion-icon>Clientes Archivados
+      </p>
+    </div>
+   <!-- <div class="row">
+
+      &lt;!&ndash;      <ion-icon size="large" name="arrow-back" style="float: left;margin-top: 1vw;color:white" routerLink="/clientes"></ion-icon>&ndash;&gt;
+
+      <ion-item style="background-color: transparent">
+        <ion-icon slot="start" size="large" name="arrow-back" routerLink="/clientes"></ion-icon>
+        <ion-label style="border: none">
+          <h2 style="text-transform: capitalize">Clientes Archivados</h2>
+        </ion-label>
+      </ion-item>
+    </div>-->
+  </div>
+
+  <div class="row d-flex justify-content-center" style="margin-top: 1vw">
+    <div class="botonera" style="">
+      <tabset [justified]="true" style="margin-top: 2vw;margin-bottom: 2vw;text-align: center;    width: 100%;">
+        <tab heading="Renta" customClass="customClass">
+          <div class="container">
+            <div class="row">
+              <ion-list style="width: 100%;">
+                <ion-item-sliding *ngFor="let cliente of filteredclientesRenta">
+                  <ion-item style="padding: 1vw">
+                    <ion-avatar slot="start">
+                      <img src="/assets/images/clientes.png">
+                    </ion-avatar>
+                    <div class="row" style="width: 100%">
+                      <div class="col-7" style="padding-right: 0px">
+                        <ion-label>
+                          <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length<=20">{{cliente.nombre}}</h2>
+                          <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length>20">{{cliente.nombre.substring(0,20)}}...</h2>
+
+                          <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length<=20">{{cliente.zona_busca}}</h4>
+                          <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length>20">{{cliente.zona_busca.substring(0,20)}}...</h4>
+                          <p *ngIf="cliente.zona_busca==''">Sin Zona</p>
+                          <p>{{cliente.presupuesto | currency}}</p>
+                        </ion-label>
+                      </div>
+                      <div class="col-5" style="text-align: right; padding: 0px">
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="desarchivarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                        </ion-button>
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="eliminarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="trash"></ion-icon>
+                        </ion-button>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+                <ion-item-sliding *ngIf="filteredclientesRenta.length==0" >
+                  <ion-item style="padding: 5vw">
+                    <ion-avatar slot="start">
+                      <img src="/assets/images/clientes.png">
+                    </ion-avatar>
+                    <!-- <ion-thumbnail slot="start">
+                       <img src="/assets/images/clientes.png">
+                     </ion-thumbnail>-->
+                    <div class="row">
+                      <div class="col-12">
+                        <ion-label>
+                          <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-list>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Venta" customClass="customClass">
+          <div class="container">
+            <div class="row">
+              <ion-list style="width: 100%;">
+                <ion-item-sliding *ngFor="let cliente of filteredclientesVenta">
+                  <ion-item style="padding: 1vw">
+                    <ion-avatar slot="start">
+                      <img src="/assets/images/clientes.png">
+                    </ion-avatar>
+                    <div class="row" style="width: 100%">
+                      <div class="col-7" style="padding-right: 0px">
+                        <ion-label>
+                          <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length<=20">{{cliente.nombre}}</h2>
+                          <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length>20">{{cliente.nombre.substring(0,20)}}...</h2>
+                          <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length<=20">{{cliente.zona_busca}}</h4>
+                          <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length>20">{{cliente.zona_busca.substring(0,20)}}...</h4>
+                          <p *ngIf="cliente.zona_busca==''">Sin Zona</p>
+                          <p>{{cliente.presupuesto | currency}}</p>
+                        </ion-label>
+                      </div>
+                      <div class="col-5" style="text-align: right; padding: 0px">
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="desarchivarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                        </ion-button>
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="eliminarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="trash"></ion-icon>
+                        </ion-button>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+                <ion-item-sliding *ngIf="filteredclientesVenta.length==0" >
+                  <ion-item style="padding: 5vw">
+                    <ion-avatar slot="start">
+                      <img src="/assets/images/clientes.png">
+                    </ion-avatar>
+                    <div class="row">
+                      <div class="col-12">
+                        <ion-label>
+                          <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-list>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+   <!--   <tabset [justified]="true" style="margin-top: 2vw;margin-bottom: 2vw;text-align: center">
+        <tab heading="Renta" customClass="customClass">
+          <div class="container">
+            <div class="row">
+              <ion-list>
+                <ion-item-sliding *ngFor="let cliente of filteredclientesRenta" >
+                  <ion-item style="padding: 1vw" *ngIf="cliente.renta_o_venta=='Renta'">
+                    <ion-avatar slot="start">
+                      <img src="/assets/images/clientes.png">
+                    </ion-avatar>
+                    &lt;!&ndash; <ion-thumbnail slot="start">
+                       <img src="/assets/images/clientes.png">
+                     </ion-thumbnail>&ndash;&gt;
+                    <div class="row" style="width: 100%">
+                      <div class="col-6">
+                        <ion-label>
+                          <h2 style="text-transform: capitalize;white-space: normal;">{{cliente.nombre}}</h2>
+                          <p style="white-space: normal;text-align: left">{{cliente.email}}</p>
+                          <p style="white-space: normal;text-align: left">{{cliente.zona_busca}}</p>
+                          <p style="white-space: normal;text-align: left">{{cliente.presupuesto}}</p>
+                          <p style="white-space: normal;text-align: left">{{cliente.referencia}}</p>
+                        </ion-label>
+                      </div>
+                      <div class="col-6" style="text-align: center">
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="desarchivarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                        </ion-button>
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="eliminarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="trash"></ion-icon>
+                        </ion-button>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+                <ion-item-sliding *ngIf="filteredclientesRenta.length==0">
+                  <ion-item style="padding: 5vw" >
+                    <div class="row">
+                      <div class="col-12">
+                        <ion-label>
+                          <h2 style="text-transform: capitalize;white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-list>
+            </div>
+          </div>
+        </tab>
+
+        <tab heading="Venta" customClass="customClass">
+          <div class="container">
+            <div class="row">
+              <ion-list>
+                <ion-item-sliding *ngFor="let cliente of filteredclientesVenta " >
+                  <ion-item style="padding: 1vw" *ngIf="cliente.renta_o_venta=='Venta'">
+                    <ion-avatar slot="start">
+                      <img src="/assets/images/clientes.png">
+                    </ion-avatar>
+                    &lt;!&ndash; <ion-thumbnail slot="start">
+                       <img src="/assets/images/clientes.png">
+                     </ion-thumbnail>&ndash;&gt;
+                    <div class="row" style="width: 100%">
+                      <div class="col-6">
+                        <ion-label>
+                          <h2 style="text-transform: capitalize;white-space: normal;">{{cliente.nombre}}</h2>
+                          <p style="white-space: normal;text-align: left">{{cliente.email}}</p>
+                          <p style="white-space: normal;text-align: left">{{cliente.zona_busca}}</p>
+                          <p style="white-space: normal;text-align: left">{{cliente.presupuesto}}</p>
+                          <p style="white-space: normal;text-align: left">{{cliente.referencia}}</p>
+                        </ion-label>
+                      </div>
+                      <div class="col-6" style="text-align: center">
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="desarchivarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                        </ion-button>
+                        <ion-button style="width: 12vw;height: 10vw;" (click)="eliminarCliente(cliente.id_cliente)">
+                          <ion-icon slot="icon-only" name="trash"></ion-icon>
+                        </ion-button>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+                <ion-item-sliding *ngIf="filteredclientesVenta.length==0">
+                  <ion-item style="padding: 5vw" >
+                    <div class="row">
+                      <div class="col-12">
+                        <ion-label>
+                          <h2 style="text-transform: capitalize;white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-list>
+            </div>
+          </div>
+        </tab>
+      </tabset>-->
+    </div>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+    <!--  <ion-fab-list side="start">
+        <ion-fab-button color="light" routerLink="/entrega-casa">
+          <img src="/assets/images/entrega.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/firma-casa">
+          <img src="/assets/images/firma.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/interes-casa">
+          <img src="/assets/images/interes.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/promocion-casa">
+          <img src="/assets/images/promocion.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/detalles-casa">
+          <img src="/assets/images/captacion.png" />
+        </ion-fab-button>
+      </ion-fab-list>-->
+  </ion-fab>
+
+</ion-content>
+
+
+
+<app-footer-blue></app-footer-blue>

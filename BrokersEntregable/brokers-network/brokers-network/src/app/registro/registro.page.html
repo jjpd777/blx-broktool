@@ -1,0 +1,155 @@
+<div class="row" style="    position: absolute;
+    z-index: 9999;
+    left: 6vw;
+    top: 2vw;
+    color: white;">
+  <ion-icon size="large" name="arrow-back" routerLink="/inicio"></ion-icon>
+</div>
+<app-menu-registro></app-menu-registro>
+
+<ion-content>
+
+
+    <div class="row d-flex justify-content-center containerFoto">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+        <button type="button" class="form-control containerFoto__boton" id="exampleInputEmail1" (click)="buscarFotoPerfil('PERFIL')"
+          aria-describedby="emailHelp">
+          <i *ngIf="newUser.fotoPerfil!=''" class="cr-icon fa fa-check" style="color: #fff"></i>
+          <span *ngIf="newUser.fotoPerfil==''">Subir foto de perfil</span>
+        </button>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Nombre" [(ngModel)]="newUser.nombre" />
+        </div>
+      </div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Apellido" [(ngModel)]="newUser.apellido" />
+        </div>
+      </div>
+<!--      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Usuario" [(ngModel)]="newUser.usuario"/>
+        </div>
+      </div>-->
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="email" class="form-control input__text" placeholder="Email" [(ngModel)]="newUser.email"/>
+        </div>
+      </div>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="password" class="form-control input__text" placeholder="Password" [(ngModel)]="newUser.password" />
+        </div>
+      </div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="number" class="form-control input__text" placeholder="Celular" [(ngModel)]="newUser.celular" />
+        </div>
+      </div>
+
+
+      
+ <!--     <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group" style="text-align: right">
+          <input type="button" class="form-control button__siguiente" value="Subir CURP " (click)="buscarCurp()"/>
+          <i *ngIf="newUser.curp!=''" class="cr-icon fa fa-check" style="color: #094F72;"></i>
+        </div>
+      </div>-->
+
+<!--
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="RFC" [(ngModel)]="newUser.rfc" />
+        </div>
+      </div>
+-->
+
+<!--      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Ciudad" [(ngModel)]="newUser.ciudad"/>
+        </div>
+      </div>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Zonas para cubrir"  [(ngModel)]="newUser.zonaParaCubrir"/>
+        </div>
+      </div>-->
+
+<!--      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Horario para cubrir citas" [(ngModel)]="newUser.horarioParaCubrir"/>
+        </div>
+      </div>-->
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  type="text"
+                  class="form-control input__text"
+                  placeholder="Empresa" [(ngModel)]="newUser.empresa"
+          />
+        </div>
+      </div>
+
+      <!-- <div class="checkbox">
+        <label class="checkbox__label">
+          <input type="checkbox" value="" (click)="asesorIndependienteClick()">
+          <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+          Soy asesor independiente
+        </label>
+      </div>-->
+
+      <ion-item (click)="asesorIndependienteClick()">
+        <ion-label style="white-space: normal;">Soy asesor independiente</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="soyasesorchecked" ></ion-checkbox>
+      </ion-item>
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+
+       <!-- <div class="checkbox">
+          <label class="checkbox__label">
+            <input type="checkbox" value="" (click)="terminosClick()">
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            He leído términos y condiciones
+          </label>
+        </div>-->
+
+        <ion-item (click)="terminosClick()">
+          <ion-label style="white-space: nowrap;">Términos y condiciones</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="toschecked" ></ion-checkbox>
+        </ion-item>
+
+<!--        <div class="checkbox">
+          <label class="checkbox__label">
+            <input type="checkbox" value="" (click)="poliitcasClick()">
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            Acepto política de privacidad
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label class="checkbox__label">
+            <input type="checkbox" value="" (click)="notificacionesClick()">
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            Deseo recibir notificaciones
+          </label>
+        </div>-->
+
+      </div>
+
+
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center" style="padding-top: 15px">
+        <div class="form-group">
+          <input type="button" class="form-control button__siguiente" value="Registrarse" (click)="finalizarRegistro()" />
+        </div>
+      </div>
+    </div>
+  
+</ion-content>
+<app-footer-blue></app-footer-blue>

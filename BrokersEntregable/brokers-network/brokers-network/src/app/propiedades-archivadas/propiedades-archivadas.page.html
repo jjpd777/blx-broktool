@@ -1,0 +1,178 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="container" style="border: none">
+    <div class="row" class="container--subHeader">
+      <p class="sub-Header">
+        <ion-icon size="large" name="arrow-back" style="float: left;" routerLink="/propiedades"></ion-icon>Propiedades Archivadas
+      </p>
+    </div>
+    <!--<div class="row" style="border: none">
+
+      &lt;!&ndash;      <ion-icon size="large" name="arrow-back" style="float: left;margin-top: 1vw;color:white" routerLink="/clientes"></ion-icon>&ndash;&gt;
+
+      <ion-item style="background-color: transparent;border: none !important;">
+        <ion-icon slot="start" size="large" name="arrow-back" routerLink="/propiedades"></ion-icon>
+        <ion-label style="border: none">
+          <h2 style="text-transform: capitalize;border: none"></h2>
+        </ion-label>
+      </ion-item>
+    </div>-->
+  </div>
+
+  <div class="container">
+    <div class="row d-flex justify-content-center" style="margin-top: 2vw">
+      <div class="botonera" style="">
+        <tabset [justified]="true" style="margin-top: 2vw;margin-bottom: 2vw;text-align: center;    width: 100%;">
+          <tab heading="Renta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list style="width: 100%;">
+                  <ion-item-sliding *ngFor="let propiedad of filteredpropiedadesRenta">
+                    <ion-item style="padding: 1vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/study.png">
+                      </ion-avatar>
+                      <div class="row" style="width: 100%">
+                        <div class="col-7" style="padding-right: 0px">
+                          <ion-label>
+                            <h2 style="text-transform: capitalize" *ngIf="propiedad.nombre.length<=20">{{propiedad.nombre}}</h2>
+                            <h2 style="text-transform: capitalize" *ngIf="propiedad.nombre.length>20">{{propiedad.nombre.substring(0,20)}}...</h2>
+
+                            <h4 style="text-transform: capitalize" *ngIf="propiedad.direccion!=''&&propiedad.direccion.length<=20">{{propiedad.direccion}}</h4>
+                            <h4 style="text-transform: capitalize" *ngIf="propiedad.direccion!=''&&propiedad.direccion.length>20">{{propiedad.direccion.substring(0,20)}}...</h4>
+                            <p *ngIf="propiedad.direccion==''">Sin dirección</p>
+                            <p>{{propiedad.precio | currency}}</p>
+                          </ion-label>
+                        </div>
+                        <div class="col-5" style="text-align: right; padding: 0px">
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="desarchivarPropiedad(propiedad.id_propiedad)">
+                            <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="eliminarPropiedad(propiedad.id_propiedad)">
+                            <ion-icon slot="icon-only" name="trash"></ion-icon>
+                          </ion-button>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredpropiedadesRenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/study.png">
+                      </ion-avatar>
+                      <!-- <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>-->
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Venta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list style="width: 100%;">
+                  <ion-item-sliding *ngFor="let propiedad of filteredpropiedadesVenta">
+                    <ion-item style="padding: 1vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/study.png">
+                      </ion-avatar>
+                      <div class="row" style="width: 100%">
+                        <div class="col-7" style="padding-right: 0px">
+                          <ion-label>
+                            <h2 style="text-transform: capitalize" *ngIf="propiedad.nombre.length<=20">{{propiedad.nombre}}</h2>
+                            <h2 style="text-transform: capitalize" *ngIf="propiedad.nombre.length>20">{{propiedad.nombre.substring(0,20)}}...</h2>
+                            <h4 style="text-transform: capitalize" *ngIf="propiedad.direccion!=''&&propiedad.direccion.length<=20">{{propiedad.direccion}}</h4>
+                            <h4 style="text-transform: capitalize" *ngIf="propiedad.direccion!=''&&propiedad.direccion.length>20">{{propiedad.direccion.substring(0,20)}}...</h4>
+                            <p *ngIf="propiedad.direccion==''">Sin dirección</p>
+                            <p>{{propiedad.precio | currency}}</p>
+                          </ion-label>
+                        </div>
+                        <div class="col-5" style="text-align: right;padding: 0px">
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="desarchivarPropiedad(propiedad.id_propiedad)">
+                            <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="eliminarPropiedad(propiedad.id_propiedad)">
+                            <ion-icon slot="icon-only" name="trash"></ion-icon>
+                          </ion-button>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredpropiedadesVenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/study.png">
+                      </ion-avatar>
+                      <!-- <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>-->
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+    <!--  <ion-fab-list side="start">
+        <ion-fab-button color="light" routerLink="/entrega-casa">
+          <img src="/assets/images/entrega.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/firma-casa">
+          <img src="/assets/images/firma.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/interes-casa">
+          <img src="/assets/images/interes.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/promocion-casa">
+          <img src="/assets/images/promocion.png" />
+        </ion-fab-button>
+        <ion-fab-button color="light" routerLink="/detalles-casa">
+          <img src="/assets/images/captacion.png" />
+        </ion-fab-button>
+      </ion-fab-list>-->
+  </ion-fab>
+
+</ion-content>
+
+
+<app-footer-blue></app-footer-blue>

@@ -1,0 +1,1028 @@
+
+<app-main-header></app-main-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="row row--header">
+    <div class="header--content">
+      <img style="width: 10%;"
+           class="imge"
+           src="/assets/images/portfolioBN.png"
+      />
+      <div class="header--content__textos">
+        <p class="header__title">Mi portafolio</p>
+      </div>
+    </div>
+  </div>
+
+
+  <ion-toolbar mode="md" style="width: 100vw; margin-left: -4vw" color="light">
+    <ion-segment
+            value="all"
+            color="primary"
+            scrollable="true"
+            mode="ios"
+            [(ngModel)]="segmentModel"
+            (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="2017">
+        <ion-label>2017</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2018">
+        <ion-label>2018</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2019">
+        <ion-label>2019</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2020">
+        <ion-label>2020</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2021">
+        <ion-label>2021</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2022">
+        <ion-label>2022</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2023">
+        <ion-label>2023</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2024">
+        <ion-label>2024</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2025">
+        <ion-label>2025</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2026">
+        <ion-label>2026</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2027">
+        <ion-label>2027</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2028">
+        <ion-label>2028</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2029">
+        <ion-label>2029</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2030">
+        <ion-label>2030</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+  <ion-card *ngIf="segmentModel === '2017'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2017</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2017)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2017/1+metas.y_2017.renta_o/1)/(metas.y_2017.meta))*100" *ngIf="metas.y_2017.meta>0">
+            {{
+            (((portafolio_arr.renta_2017/1+metas.y_2017.renta_o/1)/(metas.y_2017.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2017.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2017/1 + metas.y_2017.renta_o/1  | currency}} / {{metas.y_2017.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2017.meta,2017,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2017)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2017/1+metas.y_2017.venta_o)/(metas.y_2017.meta_venta))*100" *ngIf="metas.y_2017.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2017/1+metas.y_2017.venta_o)/(metas.y_2017.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2017.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2017/1+metas.y_2017.venta_o/1 | currency}} / {{metas.y_2017.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2017.meta_venta,2017,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2017.meta/1 + metas.y_2017.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+            <!--<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+              <img *ngIf="metas.y_2020.meta ==0" style="width: 7vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarMeta(2020)" />
+              <img *ngIf="metas.y_2020.meta !=0" style="width: 7vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta(metas.y_2020.meta,2020)" />
+            </div>-->
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2017/1 +metas.y_2017.venta_o/1+metas.y_2017.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2017.meta + metas.y_2017.meta_venta - portafolio_arr.total_2017-metas.y_2017.venta_o-metas.y_2017.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2017.meta + metas.y_2017.meta_venta- portafolio_arr.total_2017-metas.y_2017.venta_o-metas.y_2017.renta_o/1 )>0">
+                {{metas.y_2017.meta/1 + metas.y_2017.meta_venta/1 - portafolio_arr.total_2017/1-metas.y_2017.venta_o/1-metas.y_2017.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2018'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2018</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2018)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2018/1+metas.y_2018.renta_o/1)/(metas.y_2018.meta))*100" *ngIf="metas.y_2018.meta>0">
+            {{
+            (((portafolio_arr.renta_2018/1+metas.y_2018.renta_o/1)/(metas.y_2018.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2018.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2018/1 + metas.y_2018.renta_o/1  | currency}} / {{metas.y_2018.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2018.meta,2018,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2018)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2018/1+metas.y_2018.venta_o)/(metas.y_2018.meta_venta))*100" *ngIf="metas.y_2018.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2018/1+metas.y_2018.venta_o)/(metas.y_2018.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2018.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2018/1+metas.y_2018.venta_o/1 | currency}} / {{metas.y_2018.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2018.meta_venta,2018,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2018.meta/1 + metas.y_2018.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+            <!--<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+              <img *ngIf="metas.y_2020.meta ==0" style="width: 7vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarMeta(2020)" />
+              <img *ngIf="metas.y_2020.meta !=0" style="width: 7vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta(metas.y_2020.meta,2020)" />
+            </div>-->
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2018/1 +metas.y_2018.venta_o/1+metas.y_2018.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2018.meta + metas.y_2018.meta_venta - portafolio_arr.total_2018-metas.y_2018.venta_o-metas.y_2018.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2018.meta + metas.y_2018.meta_venta- portafolio_arr.total_2018-metas.y_2018.venta_o-metas.y_2018.renta_o/1 )>0">
+                {{metas.y_2018.meta/1 + metas.y_2018.meta_venta/1 - portafolio_arr.total_2018/1-metas.y_2018.venta_o/1-metas.y_2018.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2019'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2019</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2019)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2019/1+metas.y_2019.renta_o/1)/(metas.y_2019.meta))*100" *ngIf="metas.y_2019.meta>0">
+            {{
+            (((portafolio_arr.renta_2019/1+metas.y_2019.renta_o/1)/(metas.y_2019.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2019.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2019/1 + metas.y_2019.renta_o/1  | currency}} / {{metas.y_2019.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2019.meta,2019,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2020)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2019/1+metas.y_2019.venta_o)/(metas.y_2019.meta_venta))*100" *ngIf="metas.y_2019.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2019/1+metas.y_2019.venta_o)/(metas.y_2019.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2019.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2019/1+metas.y_2019.venta_o/1 | currency}} / {{metas.y_2019.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2019.meta_venta,2019,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2019.meta/1 + metas.y_2019.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+            <!--<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+              <img *ngIf="metas.y_2020.meta ==0" style="width: 7vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarMeta(2020)" />
+              <img *ngIf="metas.y_2020.meta !=0" style="width: 7vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta(metas.y_2020.meta,2020)" />
+            </div>-->
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2019/1 +metas.y_2019.venta_o/1+metas.y_2019.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2019.meta + metas.y_2019.meta_venta - portafolio_arr.total_2019-metas.y_2019.venta_o-metas.y_2019.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2019.meta + metas.y_2019.meta_venta- portafolio_arr.total_2019-metas.y_2019.venta_o-metas.y_2019.renta_o/1 )>0">
+                {{metas.y_2019.meta/1 + metas.y_2019.meta_venta/1 - portafolio_arr.total_2019/1-metas.y_2019.venta_o/1-metas.y_2019.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2020'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2020</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2020)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2020/1+metas.y_2020.renta_o/1)/(metas.y_2020.meta))*100" *ngIf="metas.y_2020.meta>0">
+            {{
+            (((portafolio_arr.renta_2020/1+metas.y_2020.renta_o/1)/(metas.y_2020.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2020.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2020/1 + metas.y_2020.renta_o/1  | currency}} / {{metas.y_2020.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2020.meta,2020,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2020)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2020/1+metas.y_2020.venta_o)/(metas.y_2020.meta_venta))*100" *ngIf="metas.y_2020.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2020/1+metas.y_2020.venta_o)/(metas.y_2020.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2020.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2020/1+metas.y_2020.venta_o/1 | currency}} / {{metas.y_2020.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2020.meta_venta,2020,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2020.meta/1 + metas.y_2020.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2020/1 +metas.y_2020.venta_o/1+metas.y_2020.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2020.meta + metas.y_2020.meta_venta - portafolio_arr.total_2020-metas.y_2020.venta_o-metas.y_2020.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2020.meta + metas.y_2020.meta_venta- portafolio_arr.total_2020-metas.y_2020.venta_o-metas.y_2020.renta_o/1 )>0">
+                {{metas.y_2020.meta/1 + metas.y_2020.meta_venta/1 - portafolio_arr.total_2020/1-metas.y_2020.venta_o/1-metas.y_2020.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2021'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2021</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2021)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2021/1+metas.y_2021.renta_o/1)/(metas.y_2021.meta))*100" *ngIf="metas.y_2021.meta>0">
+            {{
+            (((portafolio_arr.renta_2021/1+metas.y_2021.renta_o/1)/(metas.y_2021.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2021.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2021/1 + metas.y_2021.renta_o/1  | currency}} / {{metas.y_2021.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2021.meta,2021,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2021)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2021/1+metas.y_2021.venta_o)/(metas.y_2021.meta_venta))*100" *ngIf="metas.y_2021.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2021/1+metas.y_2021.venta_o)/(metas.y_2021.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2021.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2021/1+metas.y_2021.venta_o/1 | currency}} / {{metas.y_2021.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2021.meta_venta,2021,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2021.meta/1 + metas.y_2021.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2021/1 +metas.y_2021.venta_o/1+metas.y_2021.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2021.meta + metas.y_2021.meta_venta - portafolio_arr.total_2021-metas.y_2021.venta_o-metas.y_2021.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2021.meta + metas.y_2021.meta_venta- portafolio_arr.total_2021-metas.y_2021.venta_o-metas.y_2021.renta_o/1 )>0">
+                {{metas.y_2021.meta/1 + metas.y_2021.meta_venta/1 - portafolio_arr.total_2021/1-metas.y_2021.venta_o/1-metas.y_2021.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2022'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2022</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2022)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2022/1+metas.y_2022.renta_o/1)/(metas.y_2022.meta))*100" *ngIf="metas.y_2022.meta>0">
+            {{
+            (((portafolio_arr.renta_2022/1+metas.y_2022.renta_o/1)/(metas.y_2022.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2022.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2022/1 + metas.y_2022.renta_o/1  | currency}} / {{metas.y_2022.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2022.meta,2022,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2022)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2022/1+metas.y_2022.venta_o)/(metas.y_2022.meta_venta))*100" *ngIf="metas.y_2022.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2022/1+metas.y_2022.venta_o)/(metas.y_2022.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2022.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2022/1+metas.y_2022.venta_o/1 | currency}} / {{metas.y_2022.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2022.meta_venta,2022,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2022.meta/1 + metas.y_2022.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2022/1 +metas.y_2022.venta_o/1+metas.y_2022.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2022.meta + metas.y_2022.meta_venta - portafolio_arr.total_2022-metas.y_2022.venta_o-metas.y_2022.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2022.meta + metas.y_2022.meta_venta- portafolio_arr.total_2022-metas.y_2022.venta_o-metas.y_2022.renta_o/1 )>0">
+                {{metas.y_2022.meta/1 + metas.y_2022.meta_venta/1 - portafolio_arr.total_2022/1-metas.y_2022.venta_o/1-metas.y_2022.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2023'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2023</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2023)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2023/1+metas.y_2023.renta_o/1)/(metas.y_2023.meta))*100" *ngIf="metas.y_2023.meta>0">
+            {{
+            (((portafolio_arr.renta_2023/1+metas.y_2023.renta_o/1)/(metas.y_2023.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2023.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2023/1 + metas.y_2023.renta_o/1  | currency}} / {{metas.y_2023.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2023.meta,2023,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2023)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2023/1+metas.y_2023.venta_o)/(metas.y_2023.meta_venta))*100" *ngIf="metas.y_2023.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2023/1+metas.y_2023.venta_o)/(metas.y_2023.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2023.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2023/1+metas.y_2023.venta_o/1 | currency}} / {{metas.y_2023.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2023.meta_venta,2023,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2023.meta/1 + metas.y_2023.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2023/1 +metas.y_2023.venta_o/1+metas.y_2023.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2023.meta + metas.y_2023.meta_venta - portafolio_arr.total_2023-metas.y_2023.venta_o-metas.y_2023.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2023.meta + metas.y_2023.meta_venta- portafolio_arr.total_2023-metas.y_2023.venta_o-metas.y_2023.renta_o/1 )>0">
+                {{metas.y_2023.meta/1 + metas.y_2023.meta_venta/1 - portafolio_arr.total_2023/1-metas.y_2023.venta_o/1-metas.y_2023.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2024'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2024</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2024)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2024/1+metas.y_2024.renta_o/1)/(metas.y_2024.meta))*100" *ngIf="metas.y_2024.meta>0">
+            {{
+            (((portafolio_arr.renta_2024/1+metas.y_2024.renta_o/1)/(metas.y_2024.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2024.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2024/1 + metas.y_2024.renta_o/1  | currency}} / {{metas.y_2024.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2024.meta,2024,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2024)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2024/1+metas.y_2024.venta_o)/(metas.y_2024.meta_venta))*100" *ngIf="metas.y_2024.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2024/1+metas.y_2024.venta_o)/(metas.y_2024.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2024.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2024/1+metas.y_2024.venta_o/1 | currency}} / {{metas.y_2024.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2024.meta_venta,2024,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2024.meta/1 + metas.y_2024.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2024/1 +metas.y_2024.venta_o/1+metas.y_2024.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2024.meta + metas.y_2024.meta_venta - portafolio_arr.total_2024-metas.y_2024.venta_o-metas.y_2024.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2024.meta + metas.y_2024.meta_venta- portafolio_arr.total_2024-metas.y_2024.venta_o-metas.y_2024.renta_o/1 )>0">
+                {{metas.y_2024.meta/1 + metas.y_2024.meta_venta/1 - portafolio_arr.total_2024/1-metas.y_2024.venta_o/1-metas.y_2024.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2025'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2025</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2025)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2025/1+metas.y_2025.renta_o/1)/(metas.y_2025.meta))*100" *ngIf="metas.y_2025.meta>0">
+            {{
+            (((portafolio_arr.renta_2025/1+metas.y_2025.renta_o/1)/(metas.y_2025.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2025.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2025/1 + metas.y_2025.renta_o/1  | currency}} / {{metas.y_2025.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2025.meta,2025,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2025)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2025/1+metas.y_2025.venta_o)/(metas.y_2025.meta_venta))*100" *ngIf="metas.y_2025.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2025/1+metas.y_2025.venta_o)/(metas.y_2025.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2025.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2025/1+metas.y_2025.venta_o/1 | currency}} / {{metas.y_2025.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2025.meta_venta,2025,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2025.meta/1 + metas.y_2025.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2025/1 +metas.y_2025.venta_o/1+metas.y_2025.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2025.meta + metas.y_2025.meta_venta - portafolio_arr.total_2025-metas.y_2025.venta_o-metas.y_2025.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2025.meta + metas.y_2025.meta_venta- portafolio_arr.total_2025-metas.y_2025.venta_o-metas.y_2025.renta_o/1 )>0">
+                {{metas.y_2025.meta/1 + metas.y_2025.meta_venta/1 - portafolio_arr.total_2025/1-metas.y_2025.venta_o/1-metas.y_2025.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2026'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2026</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2026)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2026/1+metas.y_2026.renta_o/1)/(metas.y_2026.meta))*100" *ngIf="metas.y_2026.meta>0">
+            {{
+            (((portafolio_arr.renta_2026/1+metas.y_2026.renta_o/1)/(metas.y_2026.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2026.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2026/1 + metas.y_2026.renta_o/1  | currency}} / {{metas.y_2026.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2026.meta,2026,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2026)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2026/1+metas.y_2026.venta_o)/(metas.y_2026.meta_venta))*100" *ngIf="metas.y_2026.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2026/1+metas.y_2026.venta_o)/(metas.y_2026.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2026.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2026/1+metas.y_2026.venta_o/1 | currency}} / {{metas.y_2026.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2026.meta_venta,2026,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2026.meta/1 + metas.y_2026.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2026/1 +metas.y_2026.venta_o/1+metas.y_2026.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2026.meta + metas.y_2026.meta_venta - portafolio_arr.total_2026-metas.y_2026.venta_o-metas.y_2026.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2026.meta + metas.y_2026.meta_venta- portafolio_arr.total_2026-metas.y_2026.venta_o-metas.y_2026.renta_o/1 )>0">
+                {{metas.y_2026.meta/1 + metas.y_2026.meta_venta/1 - portafolio_arr.total_2026/1-metas.y_2026.venta_o/1-metas.y_2026.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2027'">
+  <div class="container">
+    <p class="text--meta" style="margin-top: 4vw">2027</p>
+    <div class="row" style="margin-top: 2vh; text-align: center;">
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2027)" />
+      </div>
+      <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+        <progressbar class="bar--style" [value]="((portafolio_arr.renta_2027/1+metas.y_2027.renta_o/1)/(metas.y_2027.meta))*100" *ngIf="metas.y_2027.meta>0">
+          {{
+          (((portafolio_arr.renta_2027/1+metas.y_2027.renta_o/1)/(metas.y_2027.meta))*100).toFixed(1)
+          }}%
+        </progressbar>
+        <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2027.meta==0">
+          0%
+        </progressbar>
+        <small><em>Rentas: {{portafolio_arr.renta_2027/1 + metas.y_2027.renta_o/1  | currency}} / {{metas.y_2027.meta  | currency}}</em></small>
+      </div>
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2027.meta,2027,'Renta')" />
+      </div>
+    </div>
+    <div class="row" style="margin-top: 2vh; text-align: center;">
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2027)" />
+      </div>
+      <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+        <progressbar class="bar--style" [value]="((portafolio_arr.venta_2027/1+metas.y_2027.venta_o)/(metas.y_2027.meta_venta))*100" *ngIf="metas.y_2027.meta_venta>0">
+          {{
+          (((portafolio_arr.venta_2027/1+metas.y_2027.venta_o)/(metas.y_2027.meta_venta))*100).toFixed(1)
+          }}%
+        </progressbar>
+        <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2027.meta_venta==0">
+          0%
+        </progressbar>
+        <small><em>Ventas: {{portafolio_arr.venta_2027/1+metas.y_2027.venta_o/1 | currency}} / {{metas.y_2027.meta_venta| currency}}</em></small>
+      </div>
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2027.meta_venta,2027,'Venta')" />
+      </div>
+    </div>
+    <div class="row metas--margenes">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <p class="text--meta">Meta:
+              <span class="text--meta__precio">{{metas.y_2027.meta/1 + metas.y_2027.meta_venta/1 | currency}}</span>
+            </p>
+          </div>
+        </div>
+
+        <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2027/1 +metas.y_2027.venta_o/1+metas.y_2027.renta_o/1 |currency}}</span></p>
+        <p class="text--comun">Por concretar:
+          <span class="text--comun__precio" *ngIf="(metas.y_2027.meta + metas.y_2027.meta_venta - portafolio_arr.total_2027-metas.y_2027.venta_o-metas.y_2027.renta_o/1 )<=0">
+                $0.00
+              </span>
+          <span class="text--comun__precio" *ngIf="(metas.y_2027.meta + metas.y_2027.meta_venta- portafolio_arr.total_2027-metas.y_2027.venta_o-metas.y_2027.renta_o/1 )>0">
+                {{metas.y_2027.meta/1 + metas.y_2027.meta_venta/1 - portafolio_arr.total_2027/1-metas.y_2027.venta_o/1-metas.y_2027.renta_o/1 | currency}}
+              </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-card>
+
+  <ion-card *ngIf="segmentModel === '2028'">
+  <div class="container">
+    <p class="text--meta" style="margin-top: 4vw">2028</p>
+    <div class="row" style="margin-top: 2vh; text-align: center;">
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2028)" />
+      </div>
+      <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+        <progressbar class="bar--style" [value]="((portafolio_arr.renta_2028/1+metas.y_2028.renta_o/1)/(metas.y_2028.meta))*100" *ngIf="metas.y_2028.meta>0">
+          {{
+          (((portafolio_arr.renta_2028/1+metas.y_2028.renta_o/1)/(metas.y_2028.meta))*100).toFixed(1)
+          }}%
+        </progressbar>
+        <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2028.meta==0">
+          0%
+        </progressbar>
+        <small><em>Rentas: {{portafolio_arr.renta_2028/1 + metas.y_2028.renta_o/1  | currency}} / {{metas.y_2028.meta  | currency}}</em></small>
+      </div>
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2028.meta,2028,'Renta')" />
+      </div>
+    </div>
+    <div class="row" style="margin-top: 2vh; text-align: center;">
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2028)" />
+      </div>
+      <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+        <progressbar class="bar--style" [value]="((portafolio_arr.venta_2028/1+metas.y_2028.venta_o)/(metas.y_2028.meta_venta))*100" *ngIf="metas.y_2028.meta_venta>0">
+          {{
+          (((portafolio_arr.venta_2028/1+metas.y_2028.venta_o)/(metas.y_2028.meta_venta))*100).toFixed(1)
+          }}%
+        </progressbar>
+        <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2028.meta_venta==0">
+          0%
+        </progressbar>
+        <small><em>Ventas: {{portafolio_arr.venta_2028/1+metas.y_2028.venta_o/1 | currency}} / {{metas.y_2028.meta_venta| currency}}</em></small>
+      </div>
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+        <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2028.meta_venta,2028,'Venta')" />
+      </div>
+    </div>
+    <div class="row metas--margenes">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <p class="text--meta">Meta:
+              <span class="text--meta__precio">{{metas.y_2028.meta/1 + metas.y_2028.meta_venta/1 | currency}}</span>
+            </p>
+          </div>
+        </div>
+
+        <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2028/1 +metas.y_2028.venta_o/1+metas.y_2028.renta_o/1 |currency}}</span></p>
+        <p class="text--comun">Por concretar:
+          <span class="text--comun__precio" *ngIf="(metas.y_2028.meta + metas.y_2028.meta_venta - portafolio_arr.total_2028-metas.y_2028.venta_o-metas.y_2028.renta_o/1 )<=0">
+                $0.00
+              </span>
+          <span class="text--comun__precio" *ngIf="(metas.y_2028.meta + metas.y_2028.meta_venta- portafolio_arr.total_2028-metas.y_2028.venta_o-metas.y_2028.renta_o/1 )>0">
+                {{metas.y_2028.meta/1 + metas.y_2028.meta_venta/1 - portafolio_arr.total_2028/1-metas.y_2028.venta_o/1-metas.y_2028.renta_o/1 | currency}}
+              </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-card>
+
+  <ion-card *ngIf="segmentModel === '2029'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2029</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2029)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2029/1+metas.y_2029.renta_o/1)/(metas.y_2029.meta))*100" *ngIf="metas.y_2029.meta>0">
+            {{
+            (((portafolio_arr.renta_2029/1+metas.y_2029.renta_o/1)/(metas.y_2029.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2029.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2029/1 + metas.y_2029.renta_o/1  | currency}} / {{metas.y_2029.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2029.meta,2029,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2029)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2029/1+metas.y_2029.venta_o)/(metas.y_2029.meta_venta))*100" *ngIf="metas.y_2029.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2029/1+metas.y_2029.venta_o)/(metas.y_2029.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2029.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2029/1+metas.y_2029.venta_o/1 | currency}} / {{metas.y_2029.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2029.meta_venta,2029,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2029.meta/1 + metas.y_2029.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2029/1 +metas.y_2029.venta_o/1+metas.y_2029.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2029.meta + metas.y_2029.meta_venta - portafolio_arr.total_2029-metas.y_2029.venta_o-metas.y_2029.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2029.meta + metas.y_2029.meta_venta- portafolio_arr.total_2029-metas.y_2029.venta_o-metas.y_2029.renta_o/1 )>0">
+                {{metas.y_2029.meta/1 + metas.y_2029.meta_venta/1 - portafolio_arr.total_2029/1-metas.y_2029.venta_o/1-metas.y_2029.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === '2030'">
+    <div class="container">
+      <p class="text--meta" style="margin-top: 4vw">2030</p>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/add_minus.png" (click)="agregarRenta(2030)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+          <progressbar class="bar--style" [value]="((portafolio_arr.renta_2030/1+metas.y_2030.renta_o/1)/(metas.y_2030.meta))*100" *ngIf="metas.y_2030.meta>0">
+            {{
+            (((portafolio_arr.renta_2030/1+metas.y_2030.renta_o/1)/(metas.y_2030.meta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2030.meta==0">
+            0%
+          </progressbar>
+          <small><em>Rentas: {{portafolio_arr.renta_2030/1 + metas.y_2030.renta_o/1  | currency}} / {{metas.y_2030.meta  | currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1.5vw" src="/assets/images/edit.png" (click)="editarMeta('meta',metas.y_2030.meta,2030,'Renta')" />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2vh; text-align: center;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/add_minus.png" (click)="agregarVenta(2030)" />
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8" >
+          <progressbar class="bar--style" [value]="((portafolio_arr.venta_2030/1+metas.y_2030.venta_o)/(metas.y_2030.meta_venta))*100" *ngIf="metas.y_2030.meta_venta>0">
+            {{
+            (((portafolio_arr.venta_2030/1+metas.y_2030.venta_o)/(metas.y_2030.meta_venta))*100).toFixed(1)
+            }}%
+          </progressbar>
+          <progressbar class="bar--style" [value]="0" *ngIf="metas.y_2030.meta_venta==0">
+            0%
+          </progressbar>
+          <small><em>Ventas: {{portafolio_arr.venta_2030/1+metas.y_2030.venta_o/1 | currency}} / {{metas.y_2030.meta_venta| currency}}</em></small>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">
+          <img style="width: 6vw;margin-left: 1vw;margin-top: 1vw" src="/assets/images/edit.png" (click)="editarMeta('meta_venta',metas.y_2030.meta_venta,2030,'Venta')" />
+        </div>
+      </div>
+      <div class="row metas--margenes">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <p class="text--meta">Meta:
+                <span class="text--meta__precio">{{metas.y_2030.meta/1 + metas.y_2030.meta_venta/1 | currency}}</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="text--comun">Concretado: <span class="text--comun__precio">{{portafolio_arr.total_2030/1 +metas.y_2030.venta_o/1+metas.y_2030.renta_o/1 |currency}}</span></p>
+          <p class="text--comun">Por concretar:
+            <span class="text--comun__precio" *ngIf="(metas.y_2030.meta + metas.y_2030.meta_venta - portafolio_arr.total_2030-metas.y_2030.venta_o-metas.y_2030.renta_o/1 )<=0">
+                $0.00
+              </span>
+            <span class="text--comun__precio" *ngIf="(metas.y_2030.meta + metas.y_2030.meta_venta- portafolio_arr.total_2030-metas.y_2030.venta_o-metas.y_2030.renta_o/1 )>0">
+                {{metas.y_2030.meta/1 + metas.y_2030.meta_venta/1 - portafolio_arr.total_2030/1-metas.y_2030.venta_o/1-metas.y_2030.renta_o/1 | currency}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+      <!--      <ion-fab-button color="light" routerLink="/network">
+              <img src="/assets/images/globe.png" />
+            </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+
+<app-footer-blue></app-footer-blue>

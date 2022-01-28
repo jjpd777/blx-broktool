@@ -1,0 +1,530 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="row row--header">
+
+    <div class="header--content">
+      <img style="width: 10%;"
+          class="imge"
+          src="/assets/images/clientes.png"
+        />
+        <div class="header--content__textos">
+          <p class="header__title">Mis clientes</p>
+       <!-- <p class="header__subtitle"><span style="color: white;">{{clientes.length}}</span> Cilente(s)</p>-->
+        </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row" style="padding: 1vw;margin-top: 3vw;">
+      <div class="col-sm-8 col-md-8 col-8" style="text-align: left; margin-top: 1vw">
+        <p class="header__subtitle"><span>{{this.filteredclientesRenta.length + this.filteredclientesVenta.length}}</span> Cliente(s)</p>
+      </div>
+      <div class="col-sm-4 col-md-4 col-4" style="text-align: left">
+        <ion-icon slot="icon-only" name="add" style="color: #ff7949;font-size: 28px" routerLink="/add-cliente"></ion-icon>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="botonera" style="">
+        <!--  <div class="col-sm-10 col-md-10 col-lg-10" style="margin-top: 2vw;margin-bottom: 2vw">
+            <button type="button" class="btn btn-network" routerLink="/add-propiedad">Agregar propiedades</button>
+          </div>-->
+
+        <tabset [justified]="true" style="margin-top: 2vw;margin-bottom: 2vw;text-align: center;    width: 100%;">
+          <!--   <tab heading="Renta" customClass="customClass">
+               <div class="container">
+                 <div class="row" style="min-width: 90vw">
+                   <a *ngFor="let propiedad of filteredpropiedadesRenta" (click)="verPropiedad(propiedad,$event)" style="width: 96vw;margin-left: 2vw;">
+                     <ion-item *ngIf="propiedad.tipo=='Renta'">
+                       <ion-thumbnail slot="start">
+                         <img src="/assets/images/study.png">
+                       </ion-thumbnail>
+                       <ion-label>
+                         <h2 style="text-transform: capitalize">{{propiedad.nombre}}</h2>
+                         <p>{{propiedad.direccion}}</p>
+                         <p>{{propiedad.precio | currency}}</p>
+                       </ion-label>
+                       <ion-button slot="end" routerLink="/editar-propiedad" style="width: 12vw;height: 10vw;" (click)="asignarPropiedadAEditar(propiedad,$event)" >
+                         <ion-icon slot="icon-only" name="create"></ion-icon>
+                       </ion-button>
+                       <ion-button slot="end" style="width: 12vw;height: 10vw;" (click)="archivarPropiedad(propiedad,$event)">
+                         <ion-icon slot="icon-only" name="archive"></ion-icon>
+                       </ion-button>
+                     </ion-item>
+                   </a>
+                   <ion-item *ngIf="filteredpropiedadesRenta.length==0"  style="padding: 5vw">
+                     <ion-avatar slot="start">
+                       <img src="/assets/images/study.png">
+                     </ion-avatar>
+                     &lt;!&ndash; <ion-thumbnail slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-thumbnail>&ndash;&gt;
+                     <div class="row">
+                       <div class="col-12">
+                         <ion-label>
+                           <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                         </ion-label>
+                       </div>
+                     </div>
+                   </ion-item>
+                 </div>
+               </div>
+             </tab>-->
+          <!--<tab heading="Renta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list>
+                  <ion-item-sliding *ngFor="let propiedad of filteredpropiedadesRenta">
+                    <ion-item style="padding: 1vw" (click)="verPropiedad(propiedad,$event)">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/study.png">
+                      </ion-avatar>
+                      <div class="row" style="width: 90%">
+                          <div class="col-8">
+                            <ion-label>
+                              <h2 style="text-transform: capitalize">{{propiedad.nombre}}</h2>
+                              <p *ngIf="propiedad.direccion!=''">{{propiedad.direccion}}</p>
+                              <p *ngIf="propiedad.direccion==''">Sin dirección registrada</p>
+                              <p>{{propiedad.precio | currency}}</p>
+                            </ion-label>
+                          </div>
+                          <div class="col-4" style="text-align: right">
+                            <ion-button style="width: 12vw;height: 10vw;" (click)="asignarPropiedadAEditar(propiedad,$event)" >
+                              <ion-icon slot="icon-only" name="create"></ion-icon>
+                            </ion-button>
+                            <ion-button style="width: 12vw;height: 10vw;" (click)="archivarPropiedad(propiedad,$event)">
+                              <ion-icon slot="icon-only" name="archive"></ion-icon>
+                            </ion-button>
+                          </div>
+                        </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredpropiedadesRenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/study.png">
+                      </ion-avatar>
+                      &lt;!&ndash; <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>&ndash;&gt;
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>-->
+          <tab heading="Renta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list style="width: 100%;">
+                  <ion-item-sliding *ngFor="let cliente of filteredclientesRenta">
+                    <ion-item style="padding: 1vw" (click)="irCliente(cliente)">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      <div class="row" style="width: 100%">
+                        <div class="col-7" style="padding-right: 0px">
+                          <ion-label>
+                            <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length<=20">{{cliente.nombre}}</h2>
+                            <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length>20">{{cliente.nombre.substring(0,20)}}...</h2>
+
+                            <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length<=20">{{cliente.zona_busca}}</h4>
+                            <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length>20">{{cliente.zona_busca.substring(0,20)}}...</h4>
+                            <p *ngIf="cliente.zona_busca==''">Sin Zona</p>
+                            <p>{{cliente.presupuesto | currency}}</p>
+                          </ion-label>
+                        </div>
+                        <div class="col-5" style="text-align: right; padding: 0px">
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openTelefono(cliente.telefono,$event)">
+                            <ion-icon slot="icon-only" name="call"></ion-icon>
+                            <!-- <a href="tel:{{cliente.telefono}}" style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="call"></ion-icon>
+                             </a>-->
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="archivarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="archive"></ion-icon>
+                            <!-- <a href="mailto:{{cliente.email}}" style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="mail"></ion-icon>
+                             </a>-->
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openWhatsapp(cliente.telefono,cliente.nombre,$event)">
+                            <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                            <!-- <a href="https://wa.me/+521{{cliente.telefono}}?text=Hola %20{{cliente.nombre}}, " style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                             </a>-->
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="editarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="create"></ion-icon>
+                          </ion-button>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredclientesRenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      <!-- <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>-->
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Venta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list style="width: 100%;">
+                  <ion-item-sliding *ngFor="let cliente of filteredclientesVenta">
+                    <ion-item style="padding: 1vw" (click)="irCliente(cliente)">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      <div class="row" style="width: 100%">
+                        <div class="col-7" style="padding-right: 0px">
+                          <ion-label>
+                            <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length<=20">{{cliente.nombre}}</h2>
+                            <h2 style="text-transform: capitalize" *ngIf="cliente.nombre.length>20">{{cliente.nombre.substring(0,20)}}...</h2>
+
+                            <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length<=20">{{cliente.zona_busca}}</h4>
+                            <h4 style="text-transform: capitalize" *ngIf="cliente.zona_busca!=''&&cliente.zona_busca.length>20">{{cliente.zona_busca.substring(0,20)}}...</h4>
+                            <p *ngIf="cliente.zona_busca==''">Sin Zona</p>
+                            <p>{{cliente.presupuesto | currency}}</p>
+                          </ion-label>
+                        </div>
+                        <div class="col-5" style="text-align: right; padding: 0px">
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openTelefono(cliente.telefono,$event)">
+                            <ion-icon slot="icon-only" name="call"></ion-icon>
+                            <!-- <a href="tel:{{cliente.telefono}}" style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="call"></ion-icon>
+                             </a>-->
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="archivarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="archive"></ion-icon>
+                            <!-- <a href="mailto:{{cliente.email}}" style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="mail"></ion-icon>
+                             </a>-->
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openWhatsapp(cliente.telefono,cliente.nombre,$event)">
+                            <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                            <!-- <a href="https://wa.me/+521{{cliente.telefono}}?text=Hola %20{{cliente.nombre}}, " style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                             </a>-->
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="editarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="create"></ion-icon>
+                          </ion-button>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredclientesVenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+        <!--   <div class="col-sm-10 col-md-10 col-lg-10" style="margin-top: 6vw;">
+             <button type="button" class="btn btn-network" routerLink="/mis-propiedades">Mis propiedades</button>
+           </div>-->
+        <!--   <div class="col-sm-10 col-md-10 col-lg-10" style="margin-top: 6vw;">
+             <button type="button" class="btn btn-network">Solicitar colaboración</button>
+           </div>-->
+      </div>
+    </div>
+<!--
+    <div class="row d-flex justify-content-center">
+      <div class="botonera" style="">
+        <tabset [justified]="true" style="    width: 100%;margin-top: 2vw;margin-bottom: 2vw;text-align: center">
+          <tab heading="Renta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list>
+                  <ion-item-sliding *ngFor="let cliente of filteredclientesRenta" >
+                    <ion-item style="padding: 1vw" (click)="irCliente(cliente)" *ngIf="cliente.renta_o_venta=='Renta'">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      &lt;!&ndash; <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>&ndash;&gt;
+                      <div class="row">
+                        <div class="col-6">
+                          <ion-label>
+                            <h2 style="text-transform: capitalize;white-space: normal;">{{cliente.nombre}}</h2>
+                            <p style="white-space: normal;text-align: justify">{{cliente.email}}</p>
+                            <p style="white-space: normal;text-align: justify">{{cliente.zona_busca}}</p>
+                            <p style="white-space: normal;text-align: justify">{{cliente.presupuesto | currency}}</p>
+                          &lt;!&ndash;  <p style="white-space: normal;text-align: justify">{{cliente.referencia}}</p>&ndash;&gt;
+                          </ion-label>
+                        </div>
+                        <div class="col-6" style="text-align: center">
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openTelefono(cliente.telefono,$event)">
+                            <ion-icon slot="icon-only" name="call"></ion-icon>
+                           &lt;!&ndash; <a href="tel:{{cliente.telefono}}" style="text-decoration: none; color:white;">
+                              <ion-icon slot="icon-only" name="call"></ion-icon>
+                            </a>&ndash;&gt;
+                          </ion-button>
+
+&lt;!&ndash;
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openMail(cliente.email,$event)">
+&ndash;&gt;
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="archivarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="archive"></ion-icon>
+                              &lt;!&ndash; <a href="mailto:{{cliente.email}}" style="text-decoration: none; color:white;">
+                                 <ion-icon slot="icon-only" name="mail"></ion-icon>
+                               </a>&ndash;&gt;
+                          </ion-button>
+
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openWhatsapp(cliente.telefono,cliente.nombre,$event)">
+                            <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                           &lt;!&ndash; <a href="https://wa.me/+521{{cliente.telefono}}?text=Hola %20{{cliente.nombre}}, " style="text-decoration: none; color:white;">
+                              <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                            </a>&ndash;&gt;
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="editarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="create"></ion-icon>
+                          </ion-button>
+                        </div>
+                      </div>
+
+
+                    </ion-item>
+                  &lt;!&ndash;  <ion-item-options side="start" (click)="eliminarCliente(cliente)">
+                      <ion-item-option color="danger">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                      </ion-item-option>
+                    </ion-item-options>&ndash;&gt;
+                    &lt;!&ndash;  <ion-item-options side="end" (click)="editarCliente(cliente)" routerLink="/editar-cliente">
+                        <ion-item-option><ion-icon slot="icon-only" name="create"></ion-icon></ion-item-option>
+                      </ion-item-options>&ndash;&gt;
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredclientesRenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      &lt;!&ndash; <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>&ndash;&gt;
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>
+
+          <tab heading="Venta" customClass="customClass">
+            <div class="container">
+              <div class="row">
+                <ion-list>
+                  <ion-item-sliding *ngFor="let cliente of filteredclientesVenta " >
+                    <ion-item style="padding: 1vw" (click)="irCliente(cliente)" *ngIf="cliente.renta_o_venta=='Venta'">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      &lt;!&ndash; <ion-thumbnail slot="start">
+                         <img src="/assets/images/clientes.png">
+                       </ion-thumbnail>&ndash;&gt;
+                      <div class="row">
+                        <div class="col-6">
+                          <ion-label>
+                            <h2 style="text-transform: capitalize;white-space: normal;">{{cliente.nombre}}</h2>
+&lt;!&ndash;                            <p style="white-space: normal;text-align: justify">{{cliente.email}}</p>&ndash;&gt;
+                            <p style="white-space: normal;text-align: justify">{{cliente.zona_busca}}</p>
+                            <p style="white-space: normal;text-align: justify">{{cliente.presupuesto | currency}}</p>
+                           &lt;!&ndash; <p style="white-space: normal;text-align: justify">{{cliente.referencia}}</p>&ndash;&gt;
+                          </ion-label>
+                        </div>
+                        <div class="col-6" style="text-align: center">
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openTelefono(cliente.telefono,$event)">
+                            <ion-icon slot="icon-only" name="call"></ion-icon>
+                            &lt;!&ndash; <a href="tel:{{cliente.telefono}}" style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="call"></ion-icon>
+                             </a>&ndash;&gt;
+                          </ion-button>
+
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="archivarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="archive"></ion-icon>
+                            &lt;!&ndash; <a href="mailto:{{cliente.email}}" style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="mail"></ion-icon>
+                             </a>&ndash;&gt;
+                          </ion-button>
+
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="openWhatsapp(cliente.telefono,cliente.nombre,$event)">
+                            <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                            &lt;!&ndash; <a href="https://wa.me/+521{{cliente.telefono}}?text=Hola %20{{cliente.nombre}}, " style="text-decoration: none; color:white;">
+                               <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                             </a>&ndash;&gt;
+                          </ion-button>
+                          <ion-button style="width: 12vw;height: 10vw;" (click)="editarCliente(cliente,$event)">
+                            <ion-icon slot="icon-only" name="create"></ion-icon>
+                          </ion-button>
+                        </div>
+                      </div>
+                    </ion-item>
+                   &lt;!&ndash; <ion-item-options side="start" (click)="eliminarCliente(cliente)">
+                      <ion-item-option color="danger">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                      </ion-item-option>
+                    </ion-item-options>&ndash;&gt;
+                  </ion-item-sliding>
+                  <ion-item-sliding *ngIf="filteredclientesVenta.length==0" >
+                    <ion-item style="padding: 5vw">
+                      <ion-avatar slot="start">
+                        <img src="/assets/images/clientes.png">
+                      </ion-avatar>
+                      <div class="row">
+                        <div class="col-12">
+                          <ion-label>
+                            <h2 style="white-space: normal;">Aún no se tienen registros para este concepto</h2>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </ion-item-sliding>
+                </ion-list>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>-->
+<!--    <div class="row d-flex justify-content-center">
+      <div class="botonera" style="">
+        &lt;!&ndash;<div class="col-sm-10 col-md-10 col-lg-10" style="margin-top: 2vw;">
+          <button type="button" class="btn btn-network" routerLink="/add-cliente">Agregar Clientes</button>
+        </div>&ndash;&gt;
+&lt;!&ndash;        <div class="row">
+          <ion-list>
+            <ion-item-sliding *ngFor="let cliente of clientes" >
+              <ion-item style="padding: 1vw" (click)="irCliente(cliente)">
+                <ion-avatar slot="start">
+                  <img src="/assets/images/clientes.png">
+                </ion-avatar>
+                &lt;!&ndash; <ion-thumbnail slot="start">
+                   <img src="/assets/images/clientes.png">
+                 </ion-thumbnail>&ndash;&gt;
+                <div class="row">
+                  <div class="col-7">
+                    <ion-label>
+                      <h2 style="text-transform: capitalize;white-space: normal;">{{cliente.nombre}}</h2>
+                      <p style="white-space: normal;text-align: justify">{{cliente.email}}</p>
+                      <p style="white-space: normal;text-align: justify">{{cliente.referencia}} Un texto mucho más corto</p>
+                    </ion-label>
+                  </div>
+                  <div class="col-5" style="text-align: center">
+                    <ion-button style="width: 12vw;height: 10vw;">
+                      <a href="tel:{{cliente.telefono}}" style="text-decoration: none; color:white;">
+                        <ion-icon slot="icon-only" name="call"></ion-icon>
+                      </a>
+                    </ion-button>
+
+                    <ion-button style="width: 12vw;height: 10vw;">
+                      <a href="mailto:{{cliente.email}}" style="text-decoration: none; color:white;">
+                        <ion-icon slot="icon-only" name="mail"></ion-icon>
+                      </a>
+                    </ion-button>
+
+                    <ion-button style="width: 12vw;height: 10vw;">
+                      <a href="https://wa.me/+521{{cliente.telefono}}?text=Hola %20{{cliente.nombre}}, " style="text-decoration: none; color:white;">
+                        <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                      </a>
+                    </ion-button>
+                    <ion-button style="width: 12vw;height: 10vw;" (click)="editarCliente(cliente,$event)">
+                      <ion-icon slot="icon-only" name="create"></ion-icon>
+                    </ion-button>
+                  </div>
+                </div>
+
+
+              </ion-item>
+              <ion-item-options side="start" (click)="eliminarCliente(cliente)">
+                <ion-item-option color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+            &lt;!&ndash;  <ion-item-options side="end" (click)="editarCliente(cliente)" routerLink="/editar-cliente">
+                <ion-item-option><ion-icon slot="icon-only" name="create"></ion-icon></ion-item-option>
+              </ion-item-options>&ndash;&gt;
+            </ion-item-sliding>
+          </ion-list>
+        </div>&ndash;&gt;
+       &lt;!&ndash; <div class="col-sm-10 col-md-10 col-lg-10" style="margin-top: 6vw;">
+          <button type="button" class="btn btn-network" routerLink="/mis-clientes">Mis clientes</button>
+        </div>&ndash;&gt;
+&lt;!&ndash;        <div class="col-sm-10 col-md-10 col-lg-10" style="margin-top: 6vw;">
+          <button type="button" class="btn btn-network">Solicitar colaboración</button>
+        </div>&ndash;&gt;
+      </div>
+    </div>-->
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center">
+    <div class="form-group">
+      <input
+              routerLink="/clientes-archivados"
+              type="button"
+              class="form-control"
+              value="Ver clientes archivados"
+      />
+    </div>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+
+<app-footer-blue></app-footer-blue>

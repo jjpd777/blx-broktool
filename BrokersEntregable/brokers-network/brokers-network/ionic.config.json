@@ -1,0 +1,7 @@
+{
+  "name": "brokers-network",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

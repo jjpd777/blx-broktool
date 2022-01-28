@@ -1,0 +1,94 @@
+
+
+.header__title {
+  color: white;
+  font-size: 27px;
+  font-weight: 600;
+  margin: 0px;
+  text-transform: uppercase;
+}
+
+.header__subtitle {
+  color: white;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+}
+
+.btn-network {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #ff7949;
+  border-color: #ff7949;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.botonera {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  width: 100%;
+  align-items: center;
+
+}
+
+.row--header {
+  background-color: #67adc9;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+}
+
+.row--header__align {
+  align-items: center;
+  display: flex;
+}
+
+.header--content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.header--content__textos {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.input__text {
+  border-radius: 50px;
+  border-color: #67adc9;
+  font-size: 15px;
+  color: #094f72;
+}
+
+.input__textarea {
+  border-radius: 20px!important;
+}
+
+::placeholder {
+  color: #67adc9;
+}
+
+.button__siguiente {
+  text-align:center;
+  border-radius: 50px;
+  background-color: #094f72;
+  color: white;
+  font-weight: 700;
+}
+
+.button__cancelar {
+  text-align:center;
+  border-radius: 50px;
+  background-color: #67adc9;
+  color: white;
+  font-weight: 700;
+}

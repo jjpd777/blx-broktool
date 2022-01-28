@@ -1,0 +1,162 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="row" style="background-color: #67adc9; padding: 2vw">
+    <div class="col-4 col-sm-4 col-md-4 col-lg-4 align-self-center">
+      <ion-icon style="color: white;float: left" size="large" name="arrow-back" routerLink="/clientes"></ion-icon>
+    </div>
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 align-self-center">
+      <p class="header__subtitle" style="margin-bottom: 0px;text-align: left;">Agregar Cliente</p>
+    </div>
+  </div>
+<!--  <div class="row row&#45;&#45;header">
+
+    <div class="row&#45;&#45;header__align">
+      <p class="header__subtitle" style="margin-bottom: 0px;">Agregar Cliente</p>
+
+    </div>
+  </div>-->
+
+  <div class="container" style="padding-top: 4vh;">
+    <div class="row d-flex justify-content-center">
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Nombre del Cliente" [(ngModel)]="newCliente.nombre" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="email" class="form-control input__text" placeholder="Email" [(ngModel)]="newCliente.email" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Teléfono" [(ngModel)]="newCliente.telefono" />
+          <input                  style="margin-top: 2vw;border-radius: 15px;"
+                                  type="button"
+                                  class="form-control button__siguiente"
+                                  value="Buscar Contacto"
+                                  (click)="buscarContacto()"
+          />
+        </div>
+      </div>
+     <!-- <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Sitio Web" [(ngModel)]="newCliente.website" />
+        </div>
+      </div>-->
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Referencia" [(ngModel)]="newCliente.referencia" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Propiedad que busca" [(ngModel)]="newCliente.propiedad_busca" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="newCliente.tipo_propiedad">
+            <ion-select-option value="Villa">Villa</ion-select-option>
+            <ion-select-option value="Casa">Casa</ion-select-option>
+            <ion-select-option value="Departamento">Departamento</ion-select-option>
+            <ion-select-option value="Dúplex">Dúplex</ion-select-option>
+            <ion-select-option value="Terreno/Lote">Terreno/Lote</ion-select-option>
+            <ion-select-option value="Quinta">Quinta</ion-select-option>
+            <ion-select-option value="Casa en condominio">Casa en condominio</ion-select-option>
+            <ion-select-option value="Departamento Compartido">Departamento Compartido</ion-select-option>
+            <ion-select-option value="Rancho">Rancho</ion-select-option>
+
+            <ion-select-option value="Casa uso de suelo">Casa uso de suelo</ion-select-option>
+            <ion-select-option value="Huerta">Huerta</ion-select-option>
+            <ion-select-option value="Inmueble productivo urbano">Inmueble productivo urbano</ion-select-option>
+            <ion-select-option value="Local en centro comercial">Local en centro comercial</ion-select-option>
+            <ion-select-option value="Terreno comercial">Terreno comercial</ion-select-option>
+            <ion-select-option value="Bodega comercial">Bodega comercial</ion-select-option>
+            <ion-select-option value="Nave industrial">Nave industrial</ion-select-option>
+            <ion-select-option value="Oficina">Oficina</ion-select-option>
+            <ion-select-option value="Local Comercial">Local Comercial</ion-select-option>
+            <ion-select-option value="Edificio">Edificio</ion-select-option>
+          </ion-select>
+          <!--<input type="text" class="form-control input__text" placeholder="Tipo de Operación" [(ngModel)]="newPropiedad.tipoOperacion"/>-->
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="newCliente.renta_o_venta">
+            <ion-select-option value="Renta">Renta</ion-select-option>
+            <ion-select-option value="Venta">Venta</ion-select-option>
+          </ion-select>
+          <!--<input type="text" class="form-control input__text" placeholder="Tipo de Operación" [(ngModel)]="newPropiedad.tipoOperacion"/>-->
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Zona donde busca" [(ngModel)]="newCliente.zona_busca" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Récamaras" [(ngModel)]="newCliente.recamaras" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Baños" [(ngModel)]="newCliente.banos" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Estacionamientos" [(ngModel)]="newCliente.estacionamientos" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="m2" [(ngModel)]="newCliente.m2" />
+        </div>
+      </div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  readonly
+                  placeholder="Fecha para concretar"
+                  class="form-control input__text"
+                  #dp="bsDatepicker"
+                  [(ngModel)]="newCliente.fecha_concretar"
+                  bsDatepicker
+                  [bsConfig]="{ containerClass: 'theme-blue' }"
+          />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Presupuesto" [(ngModel)]="newCliente.presupuesto_mostrar" (blur)="formatCurrency_TaxableValue($event)">
+
+          <!--<input type="text" class="form-control input__text" placeholder="Presupuesto" [(ngModel)]="newCliente.presupuesto" />-->
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Sus recursos consisten" [(ngModel)]="newCliente.recursos_consisten" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Requisitos especiales" [(ngModel)]="newCliente.requisitos_especiales" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center" style="padding-top: 15px; margin-bottom: 50px;">
+        <div class="form-group">
+          <input type="button" class="form-control button__siguiente" value="Agregar" routerLink="/clientes" (click)="agregarCliente()"/>
+        </div>
+        <div class="form-group">
+          <input type="button" class="form-control button__cancelar" value="Cancelar" routerLink="/clientes" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<app-footer-blue></app-footer-blue>

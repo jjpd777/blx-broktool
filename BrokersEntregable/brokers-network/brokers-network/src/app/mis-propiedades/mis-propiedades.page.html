@@ -1,0 +1,73 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+
+  <tabset [justified]="true">
+    <tab heading="Renta" customClass="customClass">
+      <div class="container">
+        <div class="row">
+          <a routerLink="/detalles-casa" *ngFor="let propiedad of propiedades" (click)="verPropiedad(propiedad)">
+            <!--<div class="container-card" (click)="verPropiedad(propiedad)">
+              <div class="container-card__img">
+                <img src="/assets/images/renta1.png" alt="" style="width: 30vw">
+              </div>
+              <div class="container-card__texto">
+                <p class="container-card__texto&#45;&#45;formato">{{propiedad.nombre}} - {{propiedad.direccion}}</p>
+              </div>
+            </div>-->
+            <ion-item  *ngIf="propiedad.tipo=='Renta'">
+              <ion-thumbnail slot="start">
+                <img src="/assets/images/renta1.png">
+              </ion-thumbnail>
+              <ion-label>
+                <h2 style="text-transform: capitalize">{{propiedad.nombre}}</h2>
+                <p>{{propiedad.direccion}} - {{propiedad.referencia}}</p>
+              </ion-label>
+            </ion-item>
+          </a>
+        </div>
+      </div>
+    </tab>
+
+    <tab heading="Venta" customClass="customClass">
+      <div class="container">
+        <div class="row">
+          <a routerLink="/detalles-casa" *ngFor="let propiedad of propiedades" (click)="verPropiedad(propiedad)">
+            <ion-item *ngIf="propiedad.tipo=='Venta'">
+              <ion-thumbnail slot="start">
+                <img src="/assets/images/renta2.png">
+              </ion-thumbnail>
+              <ion-label>
+                <h2 style="text-transform: capitalize">{{propiedad.nombre}}</h2>
+                <p>{{propiedad.direccion}} - {{propiedad.referencia}}</p>
+              </ion-label>
+            </ion-item>
+          </a>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+
+<app-footer-blue></app-footer-blue>

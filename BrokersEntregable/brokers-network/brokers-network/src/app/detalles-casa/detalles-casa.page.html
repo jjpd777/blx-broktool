@@ -1,0 +1,944 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="container">
+    <div class="row" class="container--subHeader">
+      <p class="sub-Header">
+        <ion-icon size="large" name="arrow-back" style="float: left;" routerLink="/propiedades"></ion-icon>{{propiedad.tipo}}
+      </p>
+    </div>
+    <div class="row" >
+      <ion-item (click)="verPropiedad(propiedad,$event)">
+        <ion-thumbnail slot="start">
+          <img *ngIf="propiedad.tipo=='Renta'" src="/assets/images/study.png">
+          <img *ngIf="propiedad.tipo=='Venta'" src="/assets/images/study.png">
+        </ion-thumbnail>
+        <ion-label>
+          <h2 style="text-transform: capitalize">{{propiedad.nombre}}</h2>
+          <p>{{propiedad.direccion}} - {{propiedad.precio | currency}}</p>
+        </ion-label>
+      </ion-item>
+     <!-- <div class="container-card">
+        <div class="container-card__img">
+          <img src="/assets/images/renta1.png" alt="">
+        </div>
+        <div class="container-card__texto">
+          <p class="container-card__texto&#45;&#45;formato">{{propiedad.nombre}}</p>
+        </div>
+      </div>-->
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div class="container--titulo-section">
+          <img src="/assets/images/captacion.png">
+         <!-- <p class="container&#45;&#45;letter-section">
+            C</p>-->
+        </div>
+      </div>
+      <div class="col-12" style="display: flex;">
+        <div class="container--text-section">
+          <p><b>CAPTACIÓN</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-grid style="margin-bottom: 2%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <!-- Sliding item with text options on both sides -->
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_c.conseguir_propiedad" (click)="showLoader()"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Conseguir la propiedad</h2>
+              <!--  <p>Agradece la confianza, agenda una cita,</p>
+                <p>y envia tu carta de presentación.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Conseguir la propiedad','Estimad@ __________ ¡gracias por la confianza! \n'+
+                                                                '¿Cuándo podemos hacer una cita para visitar la propiedad, sacar fotos y firmar el contrato de intermediación inmobiliaria?',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>
+              <ion-item-option>
+                <ion-icon slot="icon-only" name="list-box" routerLink="/formulario" (click)="abrirFormulario('Conseguir la Propiedad')"></ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="agendarCita()">
+                <ion-icon slot="icon-only" name="calendar"></ion-icon>
+              </ion-item-option>
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="download"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option  (click)="verInfo('Conseguir la propiedad','Agradece la confianza, agenda una cita y preséntate.')">
+                <ion-icon slot="icon-only" name="information"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <ion-item-sliding>
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_c.conseguir_datos"  (click)="showLoader()">></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Documentación</h2>
+             <!--   <p>Solicita los datos y documentos necesarios</p>
+                <p>para rentar el inmueble, envia esta liga.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <!--<ion-item-option>
+                <ion-icon slot="icon-only" name="open"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option *ngIf="propiedad.tipo=='Renta'" routerLink="/whatsapp" (click)="abrirWhatsapp('Documentación Propiedad',
+                                                            'Para rentar su propiedad, le dejo la lista de los documentos que necesitará tener listos. Puede enviarlos a adjuntos a este número o a mi correo:'+correo_usuario+'.\n\n'+
+                                                                '• Identificación Oficial del Propietario(s)\n'+
+                                                                '• Copia del Título de Propiedad o Escritura\n'+
+                                                                '• Copia del última Boleta Predial\n'+
+                                                                '• Carta de no adeudo de Mantenimiento (en su caso)\n'+
+                                                                '• Comprobante de domicilio\n'+
+                                                                '• Número de cuenta donde se hará el pago de la renta\n'+
+                                                                '',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>
+                <ion-item-option *ngIf="propiedad.tipo=='Venta'" routerLink="/whatsapp" (click)="abrirWhatsapp('Documentación Propiedad',
+                                                            'Para vender la propiedad que está buscando, le dejo la lista de los documentos que necesitará tener listos. Puede enviarlos a adjuntos este número o a mi correo: '+correo_usuario+
+                                                                '.\n\nREQUISITOS VENDEDOR'+
+                                                                '• Título de propiedad con sello RPP\n'+
+                                                                '• Última boleta predial\n'+
+                                                                '• Último comprobante de agua\n'+
+                                                                '• Identificación(es) de (los) propietario(s)\n'+
+                                                                '• Acta de matrimonio de (los) propietario(s)\n'+
+                                                                '• Planos\n'+
+                                                                '• Escrituración de cancelación de Hipotecas (si las hubo)\n'+
+                                                                '• Si se adquiere por donación, escritura de donación y escritura de compraventa de quien dono.\n'+
+                                                                '• Si se adquiere por herencia, copia del testamento, radicación o de adjudicación si se tiene y escritura del contrato de compra venta de quien les heredó.\n'+
+                                                                '• Si se adquiere por juicio, sentencia del juez y si procede contrato privado de compra venta.\n'+
+                                                                '• Copia de Estado de Cuenta para depósito de anticipo .\n'+
+                                                                '• Comprobantes para deducción de ISR (IFE con el domicilio del inmueble Recibos de: teléfono, luz, gas o tarjetas de crédito (últimos 3 meses).\n'+
+                                                                '.\n\nREQUISITOS VENDEDOR'+
+                                                                '• (Terreno donde después se construyó)\n'+
+                                                                '• Título de propiedad con sello RPP\n'+
+                                                                '• Licencia de construcción\n'+
+                                                                '• Aviso de terminación de obra Alineamiento y número oficial\n'+
+                                                                '• Boleta predial al corriente (5 años) Comprobantes de agua al corriente (5 años)\n'+
+                                                                '• Acta de matrimonio\n'+
+                                                                '• Planos\n'+
+                                                                '• Escrituración de cancelación de Hipotecas (si las hubo)\n'+
+                                                                '• Si se adquiere por donación, escritura de donación y escritura de compraventa de quien dono.\n'+
+                                                                '• Si se adquiere por herencia, copia del testamento, radicación o de adjudicación si se tiene y escritura del contrato de compra venta de quien les heredó.\n'+
+                                                                '• Si se adquiere por juicio, sentencia del juez y si procede contrato privado de compra venta.\n'+
+                                                                '• Copia de Estado de Cuenta para depósito de anticipo .\n'+
+                                                                '• Comprobantes para deducción de ISR (IFE con el domicilio del inmueble Recibos de: teléfono, luz, gas o tarjetas de crédito (últimos 3 meses).\n'+
+                                                                '',propiedad)">
+                    <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                </ion-item-option>
+<!--              <ion-item-option *ngIf="propiedad.tipo=='Renta'">
+                <ion-icon slot="icon-only" name="list-box" routerLink="/formulario" (click)="abrirFormulario('Documentación para Renta')"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option *ngIf="propiedad.tipo=='Venta'">
+                <ion-icon slot="icon-only" name="list-box" routerLink="/formulario" (click)="abrirFormulario('Documentación para Venta')"></ion-icon>
+              </ion-item-option>
+              <ion-item-option *ngIf="propiedad.tipo=='Renta'" (click)="verInfo('Documentación','Solicita los documentos necesarios para rentar el inmueble')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+                <ion-item-option *ngIf="propiedad.tipo=='Venta'" (click)="verInfo('Documentación','Solicita los documentos necesarios para vender el inmueble.')">
+                    <ion-icon slot="icon-only" name="information" ></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <ion-item-sliding>
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_c.elabora_contrato"  (click)="showLoader()">></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Contrato</h2>
+<!--                <p>Prepara contrato de intermediación</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="list-box"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option *ngIf="propiedad.tipo=='Venta'"  routerLink="/checkout" (click)="irCheckout('Contrato de intermediación Venta',0,'Llenamos tu contrato en 48 hrs y gestionamos firma electrónica.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option *ngIf="propiedad.tipo=='Renta'"  routerLink="/checkout" (click)="irCheckout('Contrato de intermediación Renta',0,'Llenamos tu contrato en 48 hrs y gestionamos firma electrónica.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Contrato','Prepara contrato de intermediación para llevar a la cita con el Propietario.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_c.visita_contrato"  (click)="showLoader()"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Visita de Propiedad</h2>
+               <!-- <p>Saca fotos, video, coloca una lona.</p>
+                <p>Firma contrato y solicita copia de los</p>
+                <p>documentos para armar expediente.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option  routerLink="/checkout" (click)="irCheckout('Fotografía profesional',0,'Fotógrafos profesionales te entregarán 10 fotografías. Entrega 1 semana.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option  routerLink="/checkout" (click)="irCheckout('Tour virtual',0,'Tour virtual profesional 360, incluye 6 espacios. Tiempo de entrega 1 semana.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Visita de Propiedad','¡Muchas gracias por recibirnos en su propiedad! Nos ponemos a trabajar para darle el mejor servicio posible. Empezaremos a trabajar en el estudio de mercado para conocer los valores actuales de la zona.',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Visita de Propiedad','Consigue fotos profesionales o tour virtual, aprovecha la visita para firmar contrato y recabar documentación impresa si es necesario.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+       <!--   <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_c.arma_expediente"  (click)="showLoader()">></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Arma expediente</h2>
+&lt;!&ndash;                <p>Organiza ordenadamente los</p>
+                <p>documentos y tenlos a la mano</p>&ndash;&gt;
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+            <ion-item-options side="end">
+              <ion-item-option>
+                <ion-icon slot="icon-only" name="information" (click)="verInfo('Arma expediente','Organiza ordenadamente los documentos y tenlos a la mano.')"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+
+          </ion-item-sliding>-->
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_c.estudio_mercado"  (click)="showLoader()">></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Estudio de Mercado</h2>
+           <!--     <p>Realiza el estudio de mercado en base</p>
+                <p>a los valores actuales de mercado</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="list-box"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option  routerLink="/checkout" (click)="irCheckout('Estudio de mercado e interpretación escrita',0,'Realizamos estudio de mercado en 48hrs en base a valores actualizados de mercado con una interpretación escrita para tus clientes y propietarios.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Estudio de Mercado','Realiza el estudio de mercado en base a los valores de actuales de mercado y manda la interpretación para definir precio de renta.')">
+                <ion-icon slot="icon-only" name="information"
+                          ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<!--Promocion-->
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div class="container--titulo-section">
+          <img src="/assets/images/promocion-c-new.png">
+          <!--<p class="container&#45;&#45;letter-section">
+            P</p>-->
+        </div>
+      </div>
+      <div class="col-12" style="display: flex;">
+<!--
+        <div class="container&#45;&#45;text-section" style="background-color: #b6d3e0">
+-->
+        <div class="container&#45;&#45;text-section">
+          <p><b>PROMOCIÓN</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-grid style="margin-bottom: 2%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_p.promocion"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Promoción</h2>
+                <!--<p>Agrega tus publicaciones en los portales,</p>
+                <p>CRM que tengas contratados</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+              </ion-item-option>-->
+              <!--<ion-item-option  routerLink="/checkout" (click)="irCheckout('Publica en los mejores Portales inmobiliarios',0,'Contrata aquí los mejores portales innomibliarios para promover tus inmuebles')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option (click)="abrirLinkExterno(
+              'Documentación Aval',
+              'Si el Propietario solicita alguna de estas garantías o tu cliente no tiene como avalar la renta nosotros te ayudamos con todo el proceso.',
+              'Enviar Solicitud',
+              linkLandingPage)">
+                <ion-icon slot="icon-only" name="open"></ion-icon>
+              </ion-item-option>
+              <ion-item-option  routerLink="/checkout" (click)="irCheckout('Fichas personalizadas',0,'Te apoyamos creando fichas personalizadas en PDF para enviar a tus clientes por correo.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Promoción','Agrega tus publicaciones en los portales y/o CRM que tengas contratados.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <!--          <ion-item-sliding>
+
+                      <ion-item>
+                        <ion-checkbox  (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_p.ficha_promocional"></ion-checkbox>
+                        <ion-label style="margin-left: 10px;">
+                          <h2>Ficha promocional</h2>
+                          &lt;!&ndash;<p>Promo Whatsapp</p>&ndash;&gt;
+                        </ion-label>
+                        <ion-note slot="end">
+                          << arrastra
+                        </ion-note>
+                      </ion-item>
+
+                      <ion-item-options side="end">
+                        <ion-item-option>
+                          <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                        </ion-item-option>
+                        <ion-item-option>
+                          <ion-icon slot="icon-only" name="information" (click)="verInfo('Ficha promocional','Promo Whatsapp')"></ion-icon>
+                        </ion-item-option>
+                      </ion-item-options>
+                    </ion-item-sliding>-->
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox  (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_p.chat_redes"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Chats y Redes</h2>
+                <!-- <p>Enviar 2-3 veces por semana tus</p>
+                 <p>promos por whatsapp</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Chats y Redes',
+                          'Hola! Recibimos una consulta sobre tuya sobre esta propiedad! ' +
+                           'Me pongo a tus órdenes por si deseas conocerla o necesitas info adicional.  '+
+                           '\nTítulo: '+propiedad.nombre+
+                           '\nPrecio: '+propiedad.precio+
+                           '\nUbicación: '+propiedad.referencias+
+                           '\nNotas: '+propiedad.notas+
+                           '\nLink: '+propiedad.link,propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp">
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Chats y Redes','Envía tus propiedades por Whatsapp a clientes interesados o a chats de asesores inmobiliarios ')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_p.leads"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Leads</h2>
+                <!-- <p>Mensaje de seguimiento</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Leads',
+                          'Hola! Recibimos una consulta sobre tuya sobre esta propiedad! Me pongo a tus órdenes por si deseas conocerla o necesitas info adicional. Aqui mi whatsapp para agilizar comunicación y link directo a la ficha.',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp">
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Leads','Envia mensaje de seguimiento a clientes o asesores.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_p.citas"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Citas</h2>
+                <!--    <p>Enviar ficha o link, agendar con recordatorio</p>
+                    <p>Con cliente y propietario</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Citas',
+                          'Solo confirmar la cita de _______ a las _____hrs, en el inmueble ubicado en ________.',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp" >
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="agendarCita()">
+                <ion-icon slot="icon-only" name="calendar"></ion-icon>
+              </ion-item-option>
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="bulb"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option (click)="verInfo('Citas','Agenda las citas en la propiedad con el asesor / interesado. Envía la dirección y datos de acceso.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+
+          </ion-item-sliding>
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox  (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_p.informe"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Informe</h2>
+                <!-- <p>Informe y agradecimiento</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option (click)="abrirFormulario('Informe de Visita')">
+                <ion-icon slot="icon-only" name="list-box" routerLink="/formulario" ></ion-icon>
+              </ion-item-option>
+             <!-- <ion-item-option>
+
+                <ion-icon slot="icon-only" name="bulb"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option (click)="verInfo('Informe','Enviar informe y agradecimiento')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--Interes-->
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div class="container--titulo-section">
+          <img src="/assets/images/interes-p-new.png">
+         <!-- <p class="container&#45;&#45;letter-section">
+            I</p>-->
+        </div>
+      </div>
+      <div class="col-12" style="display: flex;">
+<!--
+        <div class="container&#45;&#45;text-section" style="background-color: #fcb686">
+-->
+        <div class="container&#45;&#45;text-section">
+          <p><b>INTERÉS</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-grid style="margin-bottom: 2%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item-sliding>
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_i.oferta"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Oferta</h2>
+                <!--<p>Recibo de anticipo, Cheque de resguardo</p>
+                <p>o anticipo</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <!--<ion-item-option>
+                <ion-icon slot="icon-only" name="bulb"></ion-icon>
+              </ion-item-option>-->
+              <!--<ion-item-option>
+                <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
+              </ion-item-option>-->
+              <!--<ion-item-option>
+                <ion-icon slot="icon-only" name="calendar"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option  routerLink="/whatsapp" (click)="abrirWhatsapp('Oferta',
+                          'A continuación le dejo un formato para que pueda presentar su oferta.  Es posible modificar lo que considere conveniente. Favor de adjuntar su ID oficial y firmar.',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp">
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Oferta','Logra oferta por escrito, junto con su apartado (anticipo o cheque de resguardo).')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item-sliding *ngIf="propiedad.tipo=='Renta'">
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_i.documentacion_cliente"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Documentación del cliente</h2>
+                <!--<p>Solicitar datos del interesado y conocer</p>
+                <p>si cuenta con fiador/aval/póliza jurídica</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Documentación del cliente',
+                          'A continuación le dejo los documentos que necesitará tener listos para rentar la propiedad:'+
+                            '\n\n*REQUISITOS ARRENDADOR MEXICANO*'+
+                            '\n• Identificación oficial vigente'+
+                            '\n• 3 últimos comprobantes de ingresos o estados de cuenta bancaria'+
+                            '\n• Un mes de depósito y mes de renta'+
+                            '\n• Aval con propiedad en DF, aval solidario, mediación o póliza jurídica'+
+                            '\n• 2 referencias personales o laborales'+
+                            '\n• Aviso de privacidad (firmado)'+
+                            '\n\n*REQUISITOS ARRENDADOR EXTRANJERO*'+
+                            '\n• Copia de RFC'+
+                            '\n• 3 últimos comprobantes de ingresos o estados de cuenta bancaria'+
+                            '\n• Comprobante de domicilio de la empresa'+
+                            '\n\nREQUISITOS REPRESENTANTE LEGAL'+
+                            '\n• Copia de pasaporte'+
+                            '\n• Copia de forma migratoria o tarjeta de residencia temporal'+
+                            '\n• Carta de certificado laboral'+
+                            '\n• Un mes de depósito y mes de renta'+
+                            '\n• Aval con propiedad en DF, Aval solidario o Póliza Jurídica / Mediación'+
+                            '\n• Aviso de privacidad (firmado)'+
+                            '\n\n*REQUISITOS AVAL EMPRESA*'+
+                            '\n• Copia de Acta Constitutiva'+
+                            '\n• Copia de RFC'+
+                            '\n• 3 últimos comprobantes de ingresos o estados de cuenta bancaria.'+
+                            '\n• Comprobante de domicilio'+
+                            '\n\n*REQUISITOS AVAL EMPRESA*'+
+                            '\n• Copia de Identificación Oficial vigente'+
+                            '\n• Copia de RFC'+
+                            '\n• Copia del poder notarial'+
+                            '\n• Aviso de privacidad (firmado)',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp" >
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Documentación del cliente','Solicita documentos para investigación y conoce si cuenta con fiador/aval/póliza jurídica/mediación.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_i.contrato"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Contrato</h2>
+                <!--<p>Enviarlo a los involucrados para</p>
+                <p>su revisión.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option  routerLink="/checkout" (click)="irCheckout('Contrato de Arrendamiento',0,'Te apoyamos llenando tu contrato de arrendamiento en 48hrs y gestionamos firma electrónica.')" *ngIf="propiedad.tipo=='Renta'">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <ion-item-option  routerLink="/checkout" (click)="irCheckout('Contrato de Compraventa',0,'Te apoyamos llenando tu contrato de compraventa en 48hrs y gestionamos firma electrónica.')" *ngIf="propiedad.tipo=='Venta'">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>
+              <!--<ion-item-option  routerLink="/checkout" (click)="irCheckout('Inventario',0,'Te apoyamos realizando el inventario fotográfico en 72 hrs y elaboramos el Anexo al Contrato listo para firma.')">
+                <ion-icon slot="icon-only" name="card"></ion-icon>
+              </ion-item-option>-->
+
+                <ion-item-option (click)="agendarCita()">
+                    <ion-icon slot="icon-only" name="calendar"></ion-icon>
+                </ion-item-option>
+<!--              <ion-item-option *ngIf="propiedad.tipo=='Renta'" (click)="abrirFormulario('Contrato para Renta')">
+                <ion-icon slot="icon-only" name="list-box" routerLink="/formulario" ></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option (click)="verInfo('Contrato','Enviarlo a los involucrados para su revisión y establecer fecha de firma.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item-sliding *ngIf="propiedad.tipo=='Venta'">
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_i.seguimiento_banco_notaria"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Seguimiento con Banco o Notaría</h2>
+                <!--  <p>En caso de no contar con aval,</p>
+                  <p>sugerir contratación de Póliza Juridica.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="send"></ion-icon>
+              </ion-item-option>-->
+
+              <ion-item-option (click)="verInfo('Seguimiento con Banco o Notaría','Da seguimiento necesario con el Banco (en caso de Crédito Hipotecario), y con la Notaria: para el avalúo y la escrituración.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item-sliding *ngIf="propiedad.tipo=='Venta'">
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_i.avaluo"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Avalúo</h2>
+                <!-- <p>Si es amueblado</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+            <ion-item-options side="end">
+              <ion-item-option (click)="agendarCita()">
+                <ion-icon slot="icon-only" name="calendar"></ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Avalúo','Atención a valuador')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+
+          </ion-item-sliding>
+
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--Firma-->
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div class="container--titulo-section">
+          <!--<p class="container&#45;&#45;letter-section">
+            F</p>-->
+          <img src="/assets/images/firma-p-new.png">
+      </div>
+      </div>
+      <div class="col-12" style="display: flex;">
+<!--
+        <div class="container&#45;&#45;text-section" style="background-color: #80d8ae">
+-->
+        <div class="container--text-section" >
+          <p><b>FIRMA</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-grid style="margin-bottom: 2%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <!-- Sliding item with text options on both sides -->
+          <!--          <ion-item-sliding>
+
+                      <ion-item>
+                        <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_f.confirmar_fecha_firma"></ion-checkbox>
+                        <ion-label style="margin-left: 10px;">
+                          <h2>Confirmar fecha de firma</h2>
+                         &lt;!&ndash; <p>Reconfirma la cita para firma del</p>
+                          <p>contrato con asesor/cliente y propietario</p>&ndash;&gt;
+                        </ion-label>
+                        <ion-note slot="end">
+                          << arrastra
+                        </ion-note>
+                      </ion-item>
+
+                      <ion-item-options side="end">
+                        <ion-item-option>
+                          <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                        </ion-item-option>
+                        <ion-item-option>
+                          <ion-icon slot="icon-only" name="information" (click)="verInfo('Confirmar fecha de firma','Reconfirma la cita para firma del contrato con asesor/cliente y propietario.')"></ion-icon>
+                        </ion-item-option>
+                      </ion-item-options>
+                    </ion-item-sliding>-->
+
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_f.firma"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Firma</h2>
+                <!-- <p>Recordar a los involucrados y </p>
+                 <p>enviar requisitos</p>
+                 <p>No olvides llevar las impresiones</p>
+                 <p>necesarias del contrato, fólder y</p>
+                 <p>llaves del inmueble.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option (click)="abrirLink('http://www.brokertsnetwork.mx/Compraventacocr%C3%A9dito')">
+                <ion-icon slot="icon-only" name="open"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option routerLink="/whatsapp" (click)="abrirWhatsapp('Firma',
+                          ' Hola! Solo para confirmar la firma del Contrato el día _______ a las _____hrs, en la siguiente dirección _______. No olvide llevar:   *Identificación oficial*  a la firma del Contrato. ¡Gracias!',propiedad)">
+                <ion-icon slot="icon-only" name="logo-whatsapp" >
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Firma','No olvides llevar las impresiones necesarias (ID oficiales, comprobantes de pago, documentación del inmueble) y llaves del inmueble.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--Engrega-->
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div class="container--titulo-section">
+<!--          <p class="container&#45;&#45;letter-section">
+            E</p>-->
+          <img src="/assets/images/entrega-p-new.png">
+        </div>
+      </div>
+      <div class="col-12" style="display: flex;">
+        <div class="container--text-section">
+          <p><b>ENTREGA</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-grid style="margin-bottom: 15%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <!-- Sliding item with text options on both sides -->
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_e.entrega"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Entrega</h2>
+                <!--    <p>Asistir a la entrega de la</p>
+                    <p>propiedad y dar seguimiento necesario</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="download"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option
+                      routerLink="/whatsapp"
+                      (click)="abrirWhatsapp('Entrega',
+                            'Nuevamente agradecer la confianza, sigo a sus órdenes para lo que necesite!',propiedad)">
+                  <ion-icon slot="icon-only" name="logo-whatsapp">
+                </ion-icon>
+              </ion-item-option>
+              <ion-item-option (click)="verInfo('Entrega','Sugiere una limpieza del inmueble previo a entrega. Asiste a la  entrega de la propiedad y recibir pago de comisión.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item-sliding>
+
+            <ion-item (click)="crearComision()">
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_e.pago_comision"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Pago de comisión</h2>
+                <!-- <p>Recibo de recepción de comisión</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+<!--              <ion-item-option>
+                <ion-icon slot="icon-only" name="download"></ion-icon>
+              </ion-item-option>-->
+              <ion-item-option (click)="verInfo('Pago de comisión','Ingresa la cantidad de la comisión recibida.')">
+                <ion-icon slot="icon-only" name="information" ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center">
+      <div class="form-group">
+        <input
+                type="button"
+                class="form-control"
+                value="No se concretó la operación"
+                (click)="cancelarPropiedad()"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center">
+      <div class="form-group">
+        <input
+                type="button"
+                class="form-control"
+                value="Archivar propiedad"
+                (click)="archivarPropiedad()"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center">
+      <div class="form-group">
+        <input
+                type="button"
+                class="form-control button__siguiente"
+                value="Propiedad concretada"
+                (click)="crearComision()"
+        />
+      </div>
+    </div>
+  </ion-grid>
+  <!--  <div class="container">
+      <div class="row" style="margin-top: 5vw;">
+          <div class="col-3" routerLink="/promocion-casa">
+            <div class="container&#45;&#45;titulo-section&#45;&#45;menu" style="background-color: #b6d3e0">
+              <p class="container&#45;&#45;letter-section&#45;&#45;menu">
+                P</p>
+            </div>
+          </div>
+          <div class="col-3" routerLink="/interes-casa">
+            <div class="container&#45;&#45;titulo-section&#45;&#45;menu" style="background-color: #fcb686">
+              <p class="container&#45;&#45;letter-section&#45;&#45;menu">
+                I</p>
+            </div>
+          </div>
+          <div class="col-3" routerLink="/firma-casa">
+            <div class="container&#45;&#45;titulo-section&#45;&#45;menu" style="background-color: #80d8ae">
+              <p class="container&#45;&#45;letter-section&#45;&#45;menu">
+                F</p>
+            </div>
+          </div>
+          <div class="col-3" routerLink="/entrega-casa">
+            <div class="container&#45;&#45;titulo-section&#45;&#45;menu" style="background-color: #56c1be">
+              <p class="container&#45;&#45;letter-section&#45;&#45;menu">
+                E</p>
+            </div>
+          </div>
+      </div>
+    </div>-->
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  <!--  <ion-fab-list side="start">
+      <ion-fab-button color="light" routerLink="/entrega-casa">
+        <img src="/assets/images/entrega.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/firma-casa">
+        <img src="/assets/images/firma.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/interes-casa">
+        <img src="/assets/images/interes.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/promocion-casa">
+        <img src="/assets/images/promocion.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/detalles-casa">
+        <img src="/assets/images/captacion.png" />
+      </ion-fab-button>
+    </ion-fab-list>-->
+  </ion-fab>
+
+</ion-content>
+
+
+
+<app-footer-blue></app-footer-blue>

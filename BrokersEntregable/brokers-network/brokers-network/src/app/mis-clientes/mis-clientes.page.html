@@ -1,0 +1,95 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+
+  <div class="container">
+    <div class="row">
+      <ion-list>
+        <ion-item-sliding *ngFor="let cliente of clientes">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="/assets/images/clientes.png">
+          </ion-avatar>
+         <!-- <ion-thumbnail slot="start">
+            <img src="/assets/images/clientes.png">
+          </ion-thumbnail>-->
+          <div class="row">
+            <div class="col-7">
+              <ion-label>
+                <h2 style="text-transform: capitalize;white-space: normal;">{{cliente.nombre}}</h2>
+                 <p style="white-space: normal;text-align: justify">{{cliente.email}}</p>
+                 <p style="white-space: normal;text-align: justify">{{cliente.referencia}}</p>
+              </ion-label>
+            </div>
+            <div class="col-5" style="text-align: center">
+              <ion-button style="width: 12vw;height: 10vw;">
+                <a href="tel:{{cliente.telefono}}" style="text-decoration: none; color:white;">
+                  <ion-icon slot="icon-only" name="call"></ion-icon>
+                </a>
+              </ion-button>
+
+              <ion-button style="width: 12vw;height: 10vw;">
+                <a href="mailto:{{cliente.email}}" style="text-decoration: none; color:white;">
+                  <ion-icon slot="icon-only" name="mail"></ion-icon>
+                </a>
+              </ion-button>
+
+              <ion-button style="width: 12vw;height: 10vw;">
+                <a href="https://wa.me/+521{{cliente.telefono}}?text=Hola %20{{cliente.nombre}}, " style="text-decoration: none; color:white;">
+                  <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+                </a>
+              </ion-button>
+            </div>
+          </div>
+
+
+        </ion-item>
+          <ion-item-options side="start" (click)="eliminarCliente(cliente)">
+            <ion-item-option color="danger">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        <ion-item-options side="end" (click)="editarCliente(cliente)" routerLink="/editar-cliente">
+          <ion-item-option><ion-icon slot="icon-only" name="create"></ion-icon></ion-item-option>
+        </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <!--<a routerLink="/detalles-casa"  (click)="verCliente(cliente)">
+        &lt;!&ndash;<div class="container-card" (click)="verPropiedad(propiedad)">
+          <div class="container-card__img">
+            <img src="/assets/images/renta1.png" alt="" style="width: 30vw">
+          </div>
+          <div class="container-card__texto">
+            <p class="container-card__texto&#45;&#45;formato">{{propiedad.nombre}} - {{propiedad.direccion}}</p>
+          </div>
+        </div>&ndash;&gt;
+
+
+      </a>-->
+    </div>
+  </div>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+
+<app-footer-blue></app-footer-blue>

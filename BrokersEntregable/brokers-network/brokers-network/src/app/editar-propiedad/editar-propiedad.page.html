@@ -1,0 +1,124 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+<!--  <div class="row row&#45;&#45;header">
+
+    <div class="row&#45;&#45;header__align">
+      <p class="header__subtitle" style="margin-bottom: 0px;">Editar Propiedad</p>
+
+    </div>
+  </div>-->
+  <div class="row" style="background-color: #ff7949; padding: 2vw">
+    <div class="col-4 col-sm-4 col-md-4 col-lg-4 align-self-center">
+      <ion-icon style="color: white;float: left" size="large" name="arrow-back" (click)="goBack()"></ion-icon>
+    </div>
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 align-self-center">
+      <p class="header__subtitle" style="margin-bottom: 0px;text-align: left;">Editar Propiedad</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top: 4vh;">
+    <div class="row d-flex justify-content-center">
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Nombre del Propietario" [(ngModel)]="propiedad.nombre" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Celular" [(ngModel)]="propiedad.celular" />
+          <input
+                  style="margin-top: 2vw;border-radius: 15px;"
+                  type="button"
+                  class="form-control button__siguiente"
+                  value="Buscar Contacto"
+                  (click)="buscarContacto()"
+          />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="email" class="form-control input__text" placeholder="Email" [(ngModel)]="propiedad.email" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Precio" [(ngModel)]="propiedad.precio_mostrar" (blur)="formatCurrency_TaxableValue($event)">
+<!--
+          <input type="currency" value="{{propiedad.precio | number :'1.2-2' | currency }}" class="form-control input__text" placeholder="Precio" [(ngModel)]="propiedad.precio" />
+-->
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Referencia" [(ngModel)]="propiedad.referencia" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Dirección" [(ngModel)]="propiedad.direccion" />
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="propiedad.tipo_propiedad">
+            <ion-select-option value="Villa">Villa</ion-select-option>
+            <ion-select-option value="Casa">Casa</ion-select-option>
+            <ion-select-option value="Departamento">Departamento</ion-select-option>
+            <ion-select-option value="Dúplex">Dúplex</ion-select-option>
+            <ion-select-option value="Terreno/Lote">Terreno/Lote</ion-select-option>
+            <ion-select-option value="Quinta">Quinta</ion-select-option>
+            <ion-select-option value="Casa en condominio">Casa en condominio</ion-select-option>
+            <ion-select-option value="Departamento Compartido">Departamento Compartido</ion-select-option>
+            <ion-select-option value="Rancho">Rancho</ion-select-option>
+
+            <ion-select-option value="Casa uso de suelo">Casa uso de suelo</ion-select-option>
+            <ion-select-option value="Huerta">Huerta</ion-select-option>
+            <ion-select-option value="Inmueble productivo urbano">Inmueble productivo urbano</ion-select-option>
+            <ion-select-option value="Local en centro comercial">Local en centro comercial</ion-select-option>
+            <ion-select-option value="Terreno comercial">Terreno comercial</ion-select-option>
+            <ion-select-option value="Bodega comercial">Bodega comercial</ion-select-option>
+            <ion-select-option value="Nave industrial">Nave industrial</ion-select-option>
+            <ion-select-option value="Oficina">Oficina</ion-select-option>
+            <ion-select-option value="Local Comercial">Local Comercial</ion-select-option>
+            <ion-select-option value="Edificio">Edificio</ion-select-option>
+          </ion-select>
+          <!--<input type="text" class="form-control input__text" placeholder="Tipo de Operación" [(ngModel)]="newPropiedad.tipoOperacion"/>-->
+        </div>
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="propiedad.tipo">
+            <ion-select-option value="Renta">Renta</ion-select-option>
+            <ion-select-option value="Venta">Venta</ion-select-option>
+          </ion-select>
+          <!--<input type="text" class="form-control input__text" placeholder="Tipo de Operación" [(ngModel)]="newPropiedad.tipoOperacion"/>-->
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Link" [(ngModel)]="propiedad.link" />
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
+        <div class="form-group">
+          <textarea class="form-control input__text input__textarea" placeholder="Notas" rows="5" [(ngModel)]="propiedad.notas"></textarea>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center" style="padding-top: 15px; margin-bottom: 50px;">
+        <div class="form-group">
+          <input type="button" class="form-control button__siguiente" value="Guardar" (click)="editarPropiedad()"/>
+        </div>
+        <div class="form-group">
+          <input type="button" class="form-control button__cancelar" value="Cancelar" (click)="goBack()" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<app-footer-blue></app-footer-blue>

@@ -1,0 +1,47 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="row" style="background-color: #67adc9; padding: 2vw">
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 align-self-center">
+      <ion-icon style="color: white;float: left" size="large" name="arrow-back" (click)="goBack()"></ion-icon>
+    </div>
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 align-self-center" style="margin: 1vw;">
+      <p class="header__subtitle" style="margin-bottom: 0px;text-align: left;color: white; font-weight: bold">{{whatsappAVer}}</p>
+    </div>
+  </div>
+  <div class="container" style="padding-top: 2vw;">
+    <!--Propiedades-->
+    <div class="row d-flex justify-content-center">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Mensaje</h4>
+        <div class="form-group">
+          <textarea rows="10" class="form-control input__text" [(ngModel)]="mensaje.texto"></textarea>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Nombre - Teléfono" [(ngModel)]="mensaje.contacto" />
+          <input
+                  style="margin-top: 2vw;border-radius: 15px;"
+                  type="button"
+                  class="form-control button__siguiente"
+                  value="Buscar Contacto"
+                  (click)="buscarContacto()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center" style="margin-top: 2vw">
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+        <div class="form-group">
+          <input
+                  type="button"
+                  class="form-control button__siguiente"
+                  value="Enviar Mensaje"
+                  (click)="enviarWhatsapp()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

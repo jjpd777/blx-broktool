@@ -1,0 +1,25 @@
+.container-card {
+  display: flex;
+  margin-left: 10%;
+  flex-direction: row;
+  margin-right: 10%;
+  padding-top: 20px;
+}
+
+.container-card__img {
+  height: 40%;
+  width: 40%;
+  align-items: center;
+}
+
+.container-card__texto {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.container-card__texto--formato {
+  text-transform: uppercase;
+  color: #094f72;
+  font-weight: 700;
+}

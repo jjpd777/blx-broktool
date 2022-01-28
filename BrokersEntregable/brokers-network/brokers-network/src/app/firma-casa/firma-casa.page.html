@@ -1,0 +1,182 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="container">
+    <div class="row" class="container--subHeader">
+      <p class="sub-Header">
+        <ion-icon size="large" name="arrow-back" style="float: left;" routerLink="/propiedades"></ion-icon>{{propiedad.tipo}}
+      </p>
+    </div>
+    <div class="row">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img *ngIf="propiedad.tipo=='Renta'" src="/assets/images/renta1.png">
+          <img *ngIf="propiedad.tipo=='Venta'" src="/assets/images/renta2.png">
+        </ion-thumbnail>
+        <ion-label>
+          <h2 style="text-transform: capitalize">{{propiedad.nombre}}</h2>
+          <p>{{propiedad.direccion}} - {{propiedad.referencia}}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div class="container--titulo-section">
+          <p class="container--letter-section">
+            F</p>
+        </div>
+      </div>
+      <div class="col-12" style="display: flex;">
+        <div class="container--text-section">
+          <p>
+            Firma del contrato</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row" style="margin-top: 5vw;">
+      <div class="col-3" routerLink="/detalles-casa">
+        <div class="container--titulo-section--menu" style="background-color: #67adc9">
+          <p class="container--letter-section--menu">
+            C</p>
+        </div>
+      </div>
+      <div class="col-3" routerLink="/promocion-casa">
+        <div class="container--titulo-section--menu" style="background-color: #b6d3e0">
+          <p class="container--letter-section--menu">
+            P</p>
+        </div>
+      </div>
+      <div class="col-3" routerLink="/interes-casa">
+        <div class="container--titulo-section--menu" style="background-color: #fcb686">
+          <p class="container--letter-section--menu">
+            I</p>
+        </div>
+      </div>
+      <div class="col-3" routerLink="/entrega-casa">
+        <div class="container--titulo-section--menu" style="background-color: #56c1be">
+          <p class="container--letter-section--menu">
+            E</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-grid style="margin-bottom: 15%; margin-top: 15px;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <!-- Sliding item with text options on both sides -->
+<!--          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_f.confirmar_fecha_firma"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Confirmar fecha de firma</h2>
+               &lt;!&ndash; <p>Reconfirma la cita para firma del</p>
+                <p>contrato con asesor/cliente y propietario</p>&ndash;&gt;
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option>
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>
+              <ion-item-option>
+                <ion-icon slot="icon-only" name="information" (click)="verInfo('Confirmar fecha de firma','Reconfirma la cita para firma del contrato con asesor/cliente y propietario.')"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>-->
+
+          <ion-item-sliding>
+
+            <ion-item>
+              <ion-checkbox (ionChange)="updateEval()" [(ngModel)]="propiedad.eval_f.firma"></ion-checkbox>
+              <ion-label style="margin-left: 10px;">
+                <h2>Firma</h2>
+               <!-- <p>Recordar a los involucrados y </p>
+                <p>enviar requisitos</p>
+                <p>No olvides llevar las impresiones</p>
+                <p>necesarias del contrato, fólder y</p>
+                <p>llaves del inmueble.</p>-->
+              </ion-label>
+              <ion-note slot="end">
+                << arrastra
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option>
+                <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+              </ion-item-option>
+              <ion-item-option>
+                <ion-icon slot="icon-only" name="information" (click)="verInfo('Firma','No olvides llevar las impresiones necesarias (ID oficiales, comprobantes de pago, documentación del inmueble) y llaves del inmueble..')"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+    <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+      <div class="form-group">
+        <input
+                type="button"
+                class="form-control button__siguiente"
+                value="No se concretó la operación"
+                (click)="cancelarPropiedad()"
+        />
+      </div>
+    </div>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <img src="/assets/images/floatmenu_2.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" routerLink="/portfolio">
+        <img src="/assets/images/portfolio.png" />
+      </ion-fab-button>
+<!--      <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png" />
+      </ion-fab-button>-->
+      <ion-fab-button color="light" routerLink="/propiedades">
+        <img src="/assets/images/study.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/clientes">
+        <img src="/assets/images/user.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  <!--  <ion-fab-list side="start">
+      <ion-fab-button color="light" routerLink="/entrega-casa">
+        <img src="/assets/images/entrega.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/firma-casa">
+        <img src="/assets/images/firma.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/interes-casa">
+        <img src="/assets/images/interes.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/promocion-casa">
+        <img src="/assets/images/promocion.png" />
+      </ion-fab-button>
+      <ion-fab-button color="light" routerLink="/detalles-casa">
+        <img src="/assets/images/captacion.png" />
+      </ion-fab-button>
+    </ion-fab-list>-->
+  </ion-fab>
+
+</ion-content>
+
+
+
+<app-footer-blue></app-footer-blue>

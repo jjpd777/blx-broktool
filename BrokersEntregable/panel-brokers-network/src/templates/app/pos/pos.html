@@ -1,0 +1,147 @@
+<div class="row">
+    <div id="alert_success" ng-show="success.status === true" class="alert alert-success alert-dismissable">
+        {{success.mensaje}}
+        <button type="button" class="close" ng-click="success.status=false" aria-hidden="true">×</button>
+    </div>
+    <div id="alert_error" ng-show="error.status === true" class="alert alert-danger alert-dismissable">{{error.mensaje}}
+        <button type="button" class="close" ng-click="error.status=false" aria-hidden="true">×</button>
+    </div>
+    <div class="col-lg-12">
+        <h1 class="page-header">POS</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <uib-tabset active="active" justified="true">
+        <uib-tab index="1" heading="Pagos" ng-show="busqueda.id_plantel !== '7'">
+            <div class="row" style="padding: 3%">
+                <div class="col-md-7">
+                    <div class="row pos_resumen_heading">
+                        <h3 class="title">Resúmen de pago</h3>
+                    </div>
+                    <div class="row pos_resumen_body">
+                        <div class="card" style="background-color: #F3F3F3" ng-if="pago.conceptos.length > 0">
+                            <h4>Conceptos: </h4>
+                            <div class="row" style="border-bottom: 1px solid black; padding: 2%"
+                                 ng-repeat="c in pago.conceptos track by $index">
+                                <div class="col-md-6">
+                                    <p><strong>{{c.nombre}}</strong></p>
+                                    <p>{{c.descripcion}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" min="0" class="form-control" ng-model="c.cantidad"
+                                           ng-change="actualizarTotalPago()">
+                                    <a ng-click="quitarConceptoPago(c)">Eliminar concepto</a>
+                                </div>
+                                <div class="col-md-2">
+                                    {{c.precio | currency}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <p><strong>Total: </strong> <span class="pull-right">{{pago.total | currency}}</span></p>
+                        </div>
+                        <div class="card" ng-if="pago.conceptos.length === 0">
+                            <h4>No se ha agregado ningún concepto</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row pos_resumen_body">
+                        <div class="clearfix"></div>
+                        <label>Concepto</label>
+                        <input class="form-control" ng-model="producto.nombre" type="text">
+                        <label>Descripción</label>
+                        <input class="form-control" ng-model="producto.descripcion" type="text">
+                        <label>Precio</label>
+                        <input class="form-control" ng-model="producto.precio" type="number"><br>
+                        <div class="row">
+                            <button class="btn btn-primary" ng-click="agregarConceptoPago()">Agregar</button>
+                        </div>
+                        <label>Forma de Pago</label>
+                        <select ng-model="pago.forma_pago" class="form-control">
+                            <option ng-repeat="f in formasPago" value="{{f}}">{{f}}</option>
+                        </select>
+                        <div class="row">
+                            <button class="btn btn-success" ng-click="">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Catálogo">
+            <uib-tabset active="active" justified="true">
+                <uib-tab index="0" heading="Productos">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <button style="margin-left: 1%" class="btn btn-success pull-right"
+                                        ng-click="abrirNewProducto()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Agregar
+                                </button>
+                                <form>
+                                    <div class="form-group">
+                                        <div class="input-group col-xs-8">
+                                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                            <input type="text" class="form-control" placeholder="Busqueda de productos"
+                                                   ng-model="search">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table ng-model="productos"
+                                           class="table table-responsives table-striped table-hover">
+                                        <thead>
+                                        <th>
+                                            <a ng-click="sortType = 'nombre'; sortReverse = !sortReverse">
+                                                Nombre
+                                                <span ng-show="sortType == 'nombre' && !sortReverse"
+                                                      class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'nombre' && sortReverse"
+                                                      class="fa fa-caret-up"></span>
+                                            </a>
+                                        </th>
+                                        <th>
+                                            Descripción
+                                        </th>
+                                        <th>
+                                            <a ng-click="sortType = 'precio'; sortReverse = !sortReverse">
+                                                Precio
+                                                <span ng-show="sortType == 'precio' && !sortReverse"
+                                                      class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'precio' && sortReverse"
+                                                      class="fa fa-caret-up"></span>
+                                            </a>
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="p in productos | filter:search| orderBy:sortType:sortReverse">
+                                            <td>{{p.nombre}}</td>
+                                            <td>{{p.descripcion}}</td>
+                                            <td>{{p.precio | currency}}</td>
+                                            <td>
+                                                <button class="btn btn-circle btn-assertive"
+                                                        ng-click="abrirVerProducto(p)">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </uib-tab>
+    </uib-tabset>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

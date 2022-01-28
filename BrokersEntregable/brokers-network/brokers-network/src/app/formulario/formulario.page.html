@@ -1,0 +1,1425 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+  <div class="row" style="background-color: #67adc9; padding: 2vw">
+    <div class="col-2 col-sm-2 col-md-2 col-lg-2 align-self-center">
+      <ion-icon style="color: white;float: left" size="large" name="arrow-back" (click)="goBack()"></ion-icon>
+    </div>
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 align-self-center" style="margin: 1vw;">
+      <p class="header__subtitle" style="margin-bottom: 0px;text-align: left;color: white; font-weight: bold">{{formularioAVer}}</p>
+    </div>
+  </div>
+  <div class="container" style="padding-top: 2vw;">
+    <!--Propiedades-->
+    <div class="row d-flex justify-content-center" *ngIf="formularioAVer=='Documentación para Renta'">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Datos del Propietario</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Dirección de correo electrónico</p>
+          <input type="text" class="form-control input__text" placeholder="Calle y Número" [(ngModel)]="formulario_documentacion_renta.datos_propietario.correo" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Celular</p>
+          <input type="text" class="form-control input__text" placeholder="Ciudad" [(ngModel)]="formulario_documentacion_renta.datos_propietario.celular" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Dirección completa del inmueble</p>
+          <input type="text" class="form-control input__text" placeholder="Colonia" [(ngModel)]="formulario_documentacion_renta.datos_propietario.direccion" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Propietario(s) del Inmueble</p>
+          <div class="form-group">
+            <div class="checkbox">
+              <label class="checkbox__label">
+                <input type="checkbox" [(ngModel)]="formulario_documentacion_renta.datos_propietario.tipo.persona_fisica">
+                Persona Física
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label class="checkbox__label">
+                <input type="checkbox" [(ngModel)]="formulario_documentacion_renta.datos_propietario.tipo.persona_moral">
+                Persona Moral
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label class="checkbox__label">
+                <input type="checkbox" [(ngModel)]="formulario_documentacion_renta.datos_propietario.tipo.copropiedad">
+                Copropiedad
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Nombre completo de Propietario(s)</p>
+          <input type="text" class="form-control input__text" placeholder="Asesor que atendió" [(ngModel)]="formulario_documentacion_renta.datos_propietario.nombre" />
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" *ngIf="formularioAVer=='Documentación para Venta'">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Documentos para solicitar al Propietario</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Dirección de correo electrónico</p>
+          <input type="text" class="form-control input__text" placeholder="Email" [(ngModel)]="formulario_documentacion_venta.datos_propietario.correo" />
+        </div>
+        <div class="form-group">
+          <h6>Tipo de Persona</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_documentacion_venta.tipo_persona">
+            <ion-select-option value="Persona Física">Persona Física</ion-select-option>
+            <ion-select-option value="Persona Moral">Persona Moral</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <h6>Nacional o Extranjero</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.tipo">
+            <ion-select-option value="Nacional">Nacional</ion-select-option>
+            <ion-select-option value="Extranjero">Extranjero</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group" *ngIf="(formulario_documentacion_venta.mex_o_ext.tipo=='Nacional' ||formulario_documentacion_venta.mex_o_ext.tipo=='Extranjero') && formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.identificacion">
+              Identificación oficial vigente
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.mex_o_ext.tipo=='Nacional' && formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.acta_matrimonio">
+              Acta de Matrimonio
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.mex_o_ext.tipo=='Nacional' && formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.rfc">
+              RFC
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.mex_o_ext.tipo=='Nacional' && formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.curp">
+              CURP
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.mex_o_ext.tipo=='Extranjero' && formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.fm3">
+              Copia de su FM3
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.mex_o_ext.tipo=='Extranjero' && formulario_documentacion_venta.tipo_persona=='Persona Física'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.mex_o_ext.carta_naturalizacion">
+              En su caso, Carta de Naturalización
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_persona=='Persona Moral'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.moral.acta_constitutiva">
+              Acta constitutiva de la empresa (con inscripción al Registro Público de la Propiedad)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_persona=='Persona Moral'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.moral.rfc">
+              RFC
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_persona=='Persona Moral'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.moral.poder_representante">
+              Poder Notarial del Representante Legal
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_persona=='Persona Moral'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.moral.indentificacion">
+              Identificación Oficial del Apoderado
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_persona=='Persona Moral'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.moral.domicilio">
+              Comprobante de domicilio de la Empresa
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h6>Tipo Propiedad</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.tipo">
+            <ion-select-option value="INMUEBLE">INMUEBLE</ion-select-option>
+            <ion-select-option value="EDIFICIO">EDIFICIO</ion-select-option>
+            <ion-select-option value="DEPARTAMENTO, CASA, LOCAL Y OFICINA EN CONDOMINIO">DEPARTAMENTO, CASA, LOCAL Y OFICINA EN CONDOMINIO</ion-select-option>
+            <ion-select-option value="EDIFICIO">EDIFICIO</ion-select-option>
+          </ion-select>
+        </div>
+
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='INMUEBLE'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.inmueble.escritura">
+              Escritura de Propiedad con datos de inscripción en Registro Público de la Propiedad
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='INMUEBLE'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.inmueble.predial">
+              Última boleta de predial
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='INMUEBLE'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.inmueble.agua">
+              Última boleta de agua
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='EDIFICIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.edificio.licencia">
+              Licencia de construcción (si tiene)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='EDIFICIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.edificio.aviso_terminacion">
+              Aviso de terminación de obra (si tiene)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='EDIFICIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.edificio.alineamiento_num_oficial">
+              Alineamiento y número oficial (si tiene)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='DEPARTAMENTO, CASA, LOCAL Y OFICINA EN CONDOMINIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.departamento_casa.regimen_propiedad">
+              Régimen de propiedad en condominio (si tiene)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='DEPARTAMENTO, CASA, LOCAL Y OFICINA EN CONDOMINIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.departamento_casa.reglamento">
+              Reglamento (si tiene)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='DEPARTAMENTO, CASA, LOCAL Y OFICINA EN CONDOMINIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.departamento_casa.mantenimiento">
+              Último recibo de mantenimiento
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.tipo_propiedad.tipo=='DEPARTAMENTO, CASA, LOCAL Y OFICINA EN CONDOMINIO'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.tipo_propiedad.departamento_casa.uso_suelo">
+              Uso de suelo (sólo uso comercial)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h6>¿Tiene Hipoteca?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_documentacion_venta.hipoteca.tiene">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+            <ion-select-option value="Sí, pero ya esta liberada">Sí, pero ya esta liberada</ion-select-option>
+          </ion-select>
+        </div>
+
+        <div class="form-group" *ngIf="formulario_documentacion_venta.hipoteca.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.hipoteca.escritura">
+              Escritura de Hipoteca
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.hipoteca.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.hipoteca.recibo_pagado">
+              Último recibo de la hipoteca pagado
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.hipoteca.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.hipoteca.recibo_mantenimineto">
+              Último recibo de mantenimiento
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.hipoteca.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.hipoteca.estado_cuenta">
+              Estado de Cuenta
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.hipoteca.tiene=='Sí, pero ya esta liberada'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.hipoteca.carta_liberacion">
+              Escritura, Carta o Instrumento de liberación
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h6>¿Es Herencia?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_documentacion_venta.herencia.tiene">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.herencia.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.herencia.carta_aceptacion">
+              Escritura de aceptación de herencia
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.herencia.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.herencia.carta_notario">
+              Carta del Notario (si la aceptación de herencia está en proceso)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.herencia.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.herencia.escritura_adjudicacion">
+              Escritura de adjudicación de herencia (Si ya se adjudicó)*
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.herencia.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.herencia.carta_notario_proceso">
+              Carta del Notario (Si está en proceso la adjudicación)
+            </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formulario_documentacion_venta.herencia.tiene=='Sí'">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_documentacion_venta.herencia.propietario_fallecio">
+              Si el propietario falleció antes del 2000, traer acta de matrimonio de los herederos y si los herederos están casados por propiedad conyugal, que firme el Cónyuge también de aceptación)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h6>¿Estarías de acuerdo de pagar una comisión por intermediación inmobiliaria del 5% del precio de venta?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_documentacion_venta.disposicion">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" *ngIf="formularioAVer=='Conseguir la Propiedad'">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿Qué quiero vender?</h4>
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.que_vende">
+            <ion-select-option value="Departamento">Departamento</ion-select-option>
+            <ion-select-option value="Casa Sola">Casa Sola</ion-select-option>
+            <ion-select-option value="Casa en Condominio">Casa en Condominio</ion-select-option>
+            <ion-select-option value="Terreno">Terreno</ion-select-option>
+            <ion-select-option value="Oficina">Oficina</ion-select-option>
+            <ion-select-option value="Bodega">Bodega</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Fecha límite</h4>
+        <div class="form-group">
+          <input
+                  readonly
+                  placeholder="Selecciona una fecha"
+                  class="form-control input__text"
+                  #dp="bsDatepicker"
+                  [(ngModel)]="formulario_conseguir_propiedad.fechaLimite"
+                  bsDatepicker
+                  [bsConfig]="{ containerClass: 'theme-blue' }"
+          />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿Qué preferencias tengo sobre el comprador?</h4>
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.preferencias_comprador">
+            <ion-select-option value="Pago en efectivo">Pago en efectivo</ion-select-option>
+            <ion-select-option value="Crédito bancario autorizado y en orden">Crédito bancario autorizado y en orden</ion-select-option>
+            <ion-select-option value="Requiero comprar antes de vender">Requiero comprar antes de vender</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Sobre el valor de mi propiedad...</h4>
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_conseguir_propiedad.valor_propiedad.precio_definido">
+              Tengo ya precio definido por mi
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_conseguir_propiedad.valor_propiedad.avaluo">
+              Cuento con un avalúo
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_conseguir_propiedad.valor_propiedad.asesoria">
+              Me gustaría me asesoraran sobre mi propiedad según el precio del mercado
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="checkbox__label">
+              <input type="checkbox" [(ngModel)]="formulario_conseguir_propiedad.valor_propiedad.precio_estimado">
+              Precio estimado
+            </label>
+          </div>
+          <input *ngIf="formulario_conseguir_propiedad.valor_propiedad.precio_estimado" type="text" class="form-control input__text" placeholder="Ingresa el Precio Estimado" [(ngModel)]="formulario_conseguir_propiedad.valor_propiedad.precio" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿ Qué espacios tiene mi propiedad? (según aplique)</h4>
+        <div class="form-group">
+          <h6>Recámaras</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.recamaras">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Estudio / Family</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.estudio">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Baños completos</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.banos_completos">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Medios baños</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.medios_banos">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Estacionamientos</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.estacionamientos">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Número de pisos</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.pisos">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Número de casas</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.prioridad.numero_casas">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6 o más">6 o más</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Más detalles sobre mi propiedad:</h4>
+        <div class="form-group">
+          <h6>Ubicación</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.detalles.ubicacion">
+            <ion-select-option value="Excelente">Excelente</ion-select-option>
+            <ion-select-option value="Buena">Buena</ion-select-option>
+            <ion-select-option value="Regular">Regular</ion-select-option>
+            <ion-select-option value="Mala">Mala</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Orientación</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.detalles.orientacion">
+            <ion-select-option value="Excelente">Excelente</ion-select-option>
+            <ion-select-option value="Buena">Buena</ion-select-option>
+            <ion-select-option value="Regular">Regular</ion-select-option>
+            <ion-select-option value="Mala">Mala</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Luz Interior</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.detalles.luz_interior">
+            <ion-select-option value="Excelente">Excelente</ion-select-option>
+            <ion-select-option value="Buena">Buena</ion-select-option>
+            <ion-select-option value="Regular">Regular</ion-select-option>
+            <ion-select-option value="Mala">Mala</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Conservación en General</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.detalles.conservacion">
+            <ion-select-option value="Excelente">Excelente</ion-select-option>
+            <ion-select-option value="Buena">Buena</ion-select-option>
+            <ion-select-option value="Regular">Regular</ion-select-option>
+            <ion-select-option value="Mala">Mala</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Conservación Acabados</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.detalles.acabados">
+            <ion-select-option value="Excelente">Excelente</ion-select-option>
+            <ion-select-option value="Buena">Buena</ion-select-option>
+            <ion-select-option value="Regular">Regular</ion-select-option>
+            <ion-select-option value="Mala">Mala</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Vigilancia</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.detalles.vigilancia">
+            <ion-select-option value="Excelente">Excelente</ion-select-option>
+            <ion-select-option value="Buena">Buena</ion-select-option>
+            <ion-select-option value="Regular">Regular</ion-select-option>
+            <ion-select-option value="Mala">Mala</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Detalles aproximados de mi propiedad</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">M2 de construcción</p>
+          <input type="text" class="form-control input__text" placeholder="Metros cuadrados" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.m2_construccion" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">M2 de terreno</p>
+          <input type="text" class="form-control input__text" placeholder="Metros cuadrados" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.m2_terreno" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">M2 de jardín</p>
+          <input type="text" class="form-control input__text" placeholder="Metros cuadrados" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.m2_jardin" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">M2 de terraza</p>
+          <input type="text" class="form-control input__text" placeholder="Metros cuadrados" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.m2_terraza" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Uso de suelo</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.uso_suelo" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Edad de mi propiedad</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.edad" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Costo de mantenimiento</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.costo_mantenimiento" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Costo de vigilancia</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.costo_vigilancia" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Número de departamentos o casas en el Condominio</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_conseguir_propiedad.detalles_aprox.numero_casas" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Sobre mi proceso de {{venta_renta}}:</h4>
+        <div class="form-group">
+          <h6>¿Me han atendido otros corredores?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.proceso.otros_corredores">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Llevas una relación de todos los interesados?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.proceso.lleva_relacion">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Has intentado vender anteriormente sin buenos resultados?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.proceso.ha_decidido_comprar">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Cómo calificas tu experiencia de búsqueda hasta ahora</h6>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_conseguir_propiedad.proceso.experiencia" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Si nos eligieras como tu agente inmobiliario</h4>
+        <div class="form-group">
+          <h6>¿Aceptarías compartir una comisión del 5% del total de la compra?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.eleccion_agente.compartir_comision">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Aceptarías firmar un contrato de fidelidad (no exclusividad) para brindarte asesoría integral, trato eficiente y protegerte de malas prácticas?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.eleccion_agente.firmar_contrato">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Te gustaría agendar citas previo acuerdo?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.eleccion_agente.agendar_citas">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Dejarías llave por si no hay quien reciba?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_propiedad.eleccion_agente.dejaria_llave">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Registro de datos</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Nombre completo</p>
+          <input type="text" class="form-control input__text" placeholder="Nombre completo" [(ngModel)]="formulario_conseguir_propiedad.mis_datos.nombre" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Teléfono de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Teléfono de contacto" [(ngModel)]="formulario_conseguir_propiedad.mis_datos.telefono" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Email de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Email de contacto" [(ngModel)]="formulario_conseguir_propiedad.mis_datos.email" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Dirección Completa</p>
+          <input type="text" class="form-control input__text" placeholder="Dirección Completa" [(ngModel)]="formulario_conseguir_propiedad.mis_datos.direccion" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">¿Quién te refirió con nosotros?</p>
+          <input type="text" class="form-control input__text" placeholder="¿Quién te refirió con nosotros?" [(ngModel)]="formulario_conseguir_propiedad.mis_datos.referencia" />
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" *ngIf="formularioAVer=='Contrato para Renta'">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿ Cuántos somos en mi familia ?</h4>
+        <div class="form-group">
+          <p>Adultos</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.familia.adultos">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Niños / Jóvenes (hombres)</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.familia.hombres_no_adultos">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Niñas / Jóvenes (mujeres)</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.familia.mujeres_no_adultas">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Gente de servicio</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.familia.servicio">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Mascotas</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.familia.mascotas">
+            <ion-select-option value="0">0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿Qué estoy buscando?</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Departamento</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.que_busca.departamento">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Casa</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.que_busca.casa">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Casa en Condominio</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.que_busca.casa_condominio">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Terreno</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.que_busca.terreno">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Oficina</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.que_busca.oficina">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Bodega</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.que_busca.bodega">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Fecha límite</h4>
+        <div class="form-group">
+          <input
+                  readonly
+                  placeholder="Selecciona una fecha"
+                  class="form-control input__text"
+                  #dp="bsDatepicker"
+                  [(ngModel)]="formulario_contrato_renta.fechaOperacion"
+                  bsDatepicker
+                  [bsConfig]="{ containerClass: 'theme-blue' }"
+          />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center" *ngIf="venta_renta == 'Renta'">
+        <h4>¿Quién avalará mi renta?</h4>
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.aval">
+            <ion-select-option value="Mi empresa como fiadora">Mi empresa como fiadora</ion-select-option>
+            <ion-select-option value="Un inmueble como garantía">Un inmueble como garantía</ion-select-option>
+            <ion-select-option value="Un fiador">Un fiador</ion-select-option>
+            <ion-select-option value="Ninguno y contrataré una póliza jurídica">Ninguno y contrataré una póliza jurídica</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Detalles</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Zona de mi interés</p>
+          <input type="text" class="form-control input__text" placeholder="Zonas de mi interés" [(ngModel)]="formulario_contrato_renta.zona" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Sobre el presupuesto que tengo...</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Deseo propiedad amueblada o semi amueblada</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_contrato_renta.presupuesto.amueblada" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Ya incluyo mantenimiento</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_contrato_renta.presupuesto.mantenimiento" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Ya incluyo servicios</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_contrato_renta.presupuesto.servicios" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Mi presupuesto permite pagar aparte mantenimiento</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_contrato_renta.presupuesto.aparte_mantenimiento" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Mi presupuesto permite pagar servicios aparte</p>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_contrato_renta.presupuesto.aparte_servicios" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Presupuesto Máximo</h4>
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Presupuesto" [(ngModel)]="formulario_contrato_renta.presupuesto.tope" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Espacios</h4>
+        <div class="form-group">
+          <p>Recámaras</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.espacios.recamaras">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Baños</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.espacios.banos">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Estacionamientos</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.espacios.estacionamientos">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Preferencias</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Orientación</p>
+          <input type="text" class="form-control input__text" placeholder="Descripción" [(ngModel)]="formulario_contrato_renta.preferencias.orientacion" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Luz Interior</p>
+          <input type="text" class="form-control input__text" placeholder="Descripción" [(ngModel)]="formulario_contrato_renta.preferencias.luz_interior" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Calle cerrada y vigilancia</p>
+          <input type="text" class="form-control input__text" placeholder="Descripción" [(ngModel)]="formulario_contrato_renta.preferencias.calle_cerrada" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Tipo decoración</p>
+          <input type="text" class="form-control input__text" placeholder="Descripción" [(ngModel)]="formulario_contrato_renta.preferencias.decoracion" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Sobre mi proceso de búsqueda...</h4>
+        <div class="form-group">
+          <h6>¿Me gustaría tener amenities como algo indispensable?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.busqueda.amenities">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Me gustan edificios altos?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.busqueda.edificios_altos">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Me han atendido otros corredores?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.busqueda.otros_corredores">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Ya has visto algunas propiedades sin que algo te convenza?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.busqueda.visitado_propiedades">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Tu experiencia hasta ahora ha sido positiva?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_contrato_renta.busqueda.experiencia_positiva">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Registro de datos</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Nombre completo</p>
+          <input type="text" class="form-control input__text" placeholder="Nombre completo" [(ngModel)]="formulario_contrato_renta.mis_datos.nombre" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Teléfono de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Teléfono de contacto" [(ngModel)]="formulario_contrato_renta.mis_datos.telefono" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Email de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Email de contacto" [(ngModel)]="formulario_contrato_renta.mis_datos.email" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">¿Quién te refirió con nosotros?</p>
+          <input type="text" class="form-control input__text" placeholder="¿Quién te refirió con nosotros?" [(ngModel)]="formulario_contrato_renta.mis_datos.referencia" />
+        </div>
+      </div>
+    </div>
+    <!--Clientes-->
+    <div class="row d-flex justify-content-center" *ngIf="formularioAVer=='Conseguir el Cliente'">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Datos</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Nombre completo</p>
+          <input type="text" class="form-control input__text" placeholder="Nombre completo" [(ngModel)]="formulario_conseguir_cliente.datos.nombre" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Teléfono de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Teléfono de contacto" [(ngModel)]="formulario_conseguir_cliente.datos.telefono" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Email de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Email de contacto" [(ngModel)]="formulario_conseguir_cliente.datos.email" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Espacios</h4>
+        <div class="form-group">
+          <p>Recámaras</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.espacios.recamaras">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Baños</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.espacios.banos">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p>Estacionamientos</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.espacios.estacionamientos">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Dimensiones </h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Departamento</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.dimensiones.departamento">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Casa</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.dimensiones.casa">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Casa en Condominio</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.dimensiones.casa_condominio">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Terreno</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.dimensiones.terreno">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Oficina</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.dimensiones.oficina">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Bodega</p>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.dimensiones.bodega">
+            <ion-select-option value="50-100 m2">50-100 m2</ion-select-option>
+            <ion-select-option value="100-200 m2">100-200 m2</ion-select-option>
+            <ion-select-option value="200 - 300 m2">200 - 300 m2</ion-select-option>
+            <ion-select-option value="300 - 450 m2">300 - 450 m2</ion-select-option>
+            <ion-select-option value="450 - 600 m2">450 - 600 m2</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Fecha Operación</h4>
+        <div class="form-group">
+          <input
+                  readonly
+                  placeholder="Selecciona una fecha"
+                  class="form-control input__text"
+                  #dp="bsDatepicker"
+                  [(ngModel)]="formulario_conseguir_cliente.fechaOperacion"
+                  bsDatepicker
+                  [bsConfig]="{ containerClass: 'theme-blue' }"
+          />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Presupuesto Máximo</h4>
+        <div class="form-group">
+          <input type="text" class="form-control input__text" placeholder="Presupuesto" [(ngModel)]="formulario_conseguir_cliente.presupuesto" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿Quién avalará mi renta?</h4>
+        <div class="form-group">
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.aval">
+            <ion-select-option value="Mi empresa como aval">Mi empresa como aval</ion-select-option>
+            <ion-select-option value="Fiador conUn inmueble como garantía (idealmente en la CDMX)">Fiador conUn inmueble como garantía (idealmente en la CDMX)</ion-select-option>
+            <ion-select-option value="Un obligado solidario (persona física)">Un obligado solidario (persona física)</ion-select-option>
+            <ion-select-option value="Póliza jurídica">Póliza jurídica</ion-select-option>
+            <ion-select-option value="Contrato de mediación">Contrato de mediación</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Detalles</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Zonas de mi interés</p>
+          <input type="text" class="form-control input__text" placeholder="Zonas de mi interés" [(ngModel)]="formulario_conseguir_cliente.zonas" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Alguna especificación especial que se debe considerar en la búsqueda</p>
+          <input type="text" class="form-control input__text" placeholder="Especificación especial" [(ngModel)]="formulario_conseguir_cliente.especificacion_especial" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Sobre mi proceso de {{venta_renta}}:</h4>
+        <div class="form-group">
+          <h6>¿Me han atendido otros corredores?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.proceso.otros_corredores">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Llevas una relación de todos los interesados?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.proceso.lleva_relacion">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Has intentado vender anteriormente sin buenos resultados?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_conseguir_cliente.proceso.iniciado_busqueda">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+    </div>
+    <!--Ambos-->
+    <div class="row d-flex justify-content-center" *ngIf="formularioAVer=='Informe de Visita'">
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Propiedad Visitada</h4>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center">
+            <div class="form-group">
+              <p class="ion-no-margin">Dirección</p>
+              <input type="text" class="form-control input__text" placeholder="Calle y Número" [(ngModel)]="formulario_informe_visita.propiedad_visitada.calle" />
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center">
+            <div class="form-group">
+              <p class="ion-no-margin">Asesor que atendió</p>
+              <input type="text" class="form-control input__text" placeholder="Asesor que atendió" [(ngModel)]="formulario_informe_visita.propiedad_visitada.asesor" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Fecha de la visita</h4>
+        <div class="form-group">
+          <input
+                  readonly
+                  placeholder="Selecciona una fecha"
+                  class="form-control input__text"
+                  #dp="bsDatepicker"
+                  [(ngModel)]="formulario_informe_visita.fechaVisita"
+                  bsDatepicker
+                  [bsConfig]="{ containerClass: 'theme-blue' }"
+          />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿ Qué le gustó de la propiedad ?</h4>
+        <div class="row">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 align-self-center">
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.ubicacion">
+                  Ubicación
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.conservacion">
+                  Conservación
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.espacio">
+                  Espacio
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.precio">
+                  Precio
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 align-self-center">
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.distribucion">
+                  Distribución
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.acabados">
+                  Acabados
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.estilo">
+                  Estilo
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label class="checkbox__label">
+                  <input type="checkbox" [(ngModel)]="formulario_informe_visita.gustos.otro">
+                  Otro
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Áreas de oportunidad del inmueble</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">¿Hubo algo que no le convenciera?</p>
+          <input type="text" class="form-control input__text" placeholder="¿Hubo algo que no le convenciera?" [(ngModel)]="formulario_informe_visita.oportunidad.no_convencio" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">¿Falta algún área que necesite?</p>
+          <input type="text" class="form-control input__text" placeholder="¿Falta algún área que necesite?" [(ngModel)]="formulario_informe_visita.oportunidad.falta_area" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Su calificación del 1 al 10</p>
+          <input type="text" class="form-control input__text" placeholder="Su calificación del 1 al 10" [(ngModel)]="formulario_informe_visita.oportunidad.calificacion" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">¿Le gustaría visitar de nuevo el inmueble?</p>
+          <input type="text" class="form-control input__text" placeholder="¿Le gustaría visitar de nuevo el inmueble?" [(ngModel)]="formulario_informe_visita.oportunidad.visitar_nuevo" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Algún comentario sobre la visita...</p>
+          <input type="text" class="form-control input__text" placeholder="Algún comentario sobre la visita..." [(ngModel)]="formulario_informe_visita.oportunidad.comentario" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>¿Cómo considera nuestro servicio hasta ahora?</h4>
+        <div class="row">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 align-self-center">
+            <div class="form-group">
+              <h6 class="ion-no-margin">Atención</h6>
+              <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.servicio.atencion">
+                <ion-select-option value="Excelente">Excelente</ion-select-option>
+                <ion-select-option value="Bueno">Bueno</ion-select-option>
+                <ion-select-option value="Regular">Regular</ion-select-option>
+                <ion-select-option value="Malo">Malo</ion-select-option>
+              </ion-select>
+            </div>
+            <div class="form-group">
+              <h6 class="ion-no-margin">Información</h6>
+              <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.servicio.informacion">
+                <ion-select-option value="Excelente">Excelente</ion-select-option>
+                <ion-select-option value="Bueno">Bueno</ion-select-option>
+                <ion-select-option value="Regular">Regular</ion-select-option>
+                <ion-select-option value="Malo">Malo</ion-select-option>
+              </ion-select>
+            </div>
+          </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 align-self-center">
+            <div class="form-group">
+              <h6 class="ion-no-margin">Puntualidad</h6>
+              <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.servicio.puntualidad">
+                <ion-select-option value="Excelente">Excelente</ion-select-option>
+                <ion-select-option value="Bueno">Bueno</ion-select-option>
+                <ion-select-option value="Regular">Regular</ion-select-option>
+                <ion-select-option value="Malo">Malo</ion-select-option>
+              </ion-select>
+            </div>
+            <div class="form-group">
+              <h6 class="ion-no-margin">Profesionalismo</h6>
+              <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.servicio.profesionalismo">
+                <ion-select-option value="Excelente">Excelente</ion-select-option>
+                <ion-select-option value="Bueno">Bueno</ion-select-option>
+                <ion-select-option value="Regular">Regular</ion-select-option>
+                <ion-select-option value="Malo">Malo</ion-select-option>
+              </ion-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Registro de mis datos</h4>
+        <div class="form-group">
+          <p class="ion-no-margin">Nombre completo</p>
+          <input type="text" class="form-control input__text" placeholder="Nombre completo" [(ngModel)]="formulario_informe_visita.mis_datos.nombre" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Teléfono de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Teléfono de contacto" [(ngModel)]="formulario_informe_visita.mis_datos.telefono" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">Email de contacto</p>
+          <input type="text" class="form-control input__text" placeholder="Email de contacto" [(ngModel)]="formulario_informe_visita.mis_datos.email" />
+        </div>
+        <div class="form-group">
+          <p class="ion-no-margin">¿Quién te refirió con nosotros?</p>
+          <input type="text" class="form-control input__text" placeholder="¿Quién te refirió con nosotros?" [(ngModel)]="formulario_informe_visita.mis_datos.referencia" />
+        </div>
+      </div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 align-self-center">
+        <h4>Sobre mi proceso de búsqueda...</h4>
+        <div class="form-group">
+          <h6>¿Me han atendido otros corredores?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.proceso.otros_corredores">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Llevas una relación de lo que ya has visto?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.proceso.lleva_relacion">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>¿Has decidido comprar anteriormente sin buenos resultados?</h6>
+          <ion-select class="form-control input__text" okText="Listo" cancelText="Cancelar" [(ngModel)]="formulario_informe_visita.proceso.ha_decidido_comprar">
+            <ion-select-option value="Sí">Sí</ion-select-option>
+            <ion-select-option value="No">No</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form-group">
+          <h6>Cómo calificas tu experiencia de búsqueda hasta ahora</h6>
+          <input type="text" class="form-control input__text" placeholder="" [(ngModel)]="formulario_informe_visita.proceso.experiencia" />
+        </div>
+      </div>
+    </div>
+
+
+
+      <div class="row d-flex justify-content-center">
+          <div class="col-9 col-sm-9 col-md-9 col-lg-9 align-self-center">
+              <div class="form-group">
+                  <input
+                          type="button"
+                          class="form-control button__siguiente"
+                          value="Enviar"
+                          (click)="enviarFormulario()"
+                  />
+              </div>
+          </div>
+      </div>
+  </div>
+</ion-content>

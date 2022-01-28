@@ -1,0 +1,91 @@
+<app-main-header></app-main-header>
+
+<ion-content>
+
+
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center; padding: 0px;">
+    <img (click)="buscarFoto('PORTADA')"
+    class="imge"
+         src="{{URLROOT}}Docs/{{user_info.fotoPortada}}" (error)="errorImagePortada(img)" #img
+    />
+  </div>
+  <div
+      class="col-12 col-sm-12 col-md-12 col-lg-12"
+      style="text-align: center;"
+    >
+      <img class="container__Foto" (click)="buscarFoto('PERFIL')"
+        style="border-radius: 50%;     width: 20vh;
+      height: 20vh; margin-top: -15vh;"
+        src="{{URLROOT}}Docs/{{user_info.fotoPerfil}}"  (error)="errorImageFoto(img2)" #img2
+      />
+    </div>
+
+
+<div class="container" style="color: #094f72;">
+  <div class="row">
+    <div
+      class="col-12 col-sm-12 col-md-12 col-lg-12"
+      style="text-align: center;"
+    >
+      <h1 class="titulo">{{user_info.nombreApellido}}</h1>
+      <div>
+        <p class="subtitle">{{user_info.empresa}}</p>
+        <p class="subtitle__asesor" *ngIf="user_info.asesorIndependiente==1">Asesor Independiente</p>
+        <p class="subtitle__asesor">Desde {{user_info.desdeCuando | date:'yyyy'}}</p>
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center; margin-top: 3vh;">
+
+        <div>
+          <p class="datosStyle">{{user_info.email}}</p>
+          <p class="datosStyle" *ngIf="user_info.celular!=''">{{user_info.celular}}</p>
+        </div>
+
+    </div>
+    <div
+      class="col-12 col-sm-12 col-md-12 col-lg-12"
+      style="text-align: center; margin-top: 3vh; "
+    >
+<!--      <div>
+        <p class="subtitle">Experiencia y certificaciones</p>
+      </div>-->
+<!--      <div style="margin-top: 3vh; margin-bottom: 4vh;">
+        <p class="subtitle">Calificación</p>
+        <div>
+          <fa-icon class="icon__espaciado" [icon]="iconStar" size="lg"></fa-icon>
+          <fa-icon class="icon__espaciado" [icon]="iconStar" size="lg"></fa-icon>
+          <fa-icon class="icon__espaciado" [icon]="iconStar" size="lg"></fa-icon>
+          <fa-icon class="icon__espaciado" [icon]="iconHalfStar" size="lg"></fa-icon>
+        </div>
+      </div>-->
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 align-self-center" style="padding-top: 15px">
+      <div class="form-group">
+        <input type="button" class="form-control button__siguiente" value="Editar Perfil" (click)="irRegistroFinal()" />
+      </div>
+    </div>
+  </div>
+</div>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <!-- <a routerLink="/"> -->
+    <img src="/assets/images/floatmenu_2.png">
+    <!-- </a> -->
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button color="light" routerLink="/portfolio" >
+      <img src="/assets/images/portfolio.png">
+    </ion-fab-button>
+    <ion-fab-button color="light" routerLink="/network">
+        <img src="/assets/images/globe.png">
+    </ion-fab-button>
+    <ion-fab-button color="light" routerLink="/propiedades">
+      <img src="/assets/images/study.png">
+    </ion-fab-button>
+    <ion-fab-button color="light" routerLink="/clientes">
+      <img src="/assets/images/user.png">
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+</ion-content>
+<app-footer-blue></app-footer-blue>
